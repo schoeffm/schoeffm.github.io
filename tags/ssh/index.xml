@@ -6,7 +6,7 @@
     <description>Recent content in ssh on Personal PasteBin</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 11 Jul 2019 15:35:15 +0200</lastBuildDate>
+    <lastBuildDate>Mon, 24 Jun 2019 15:35:15 +0200</lastBuildDate>
     
 	<atom:link href="https://schoeffm.github.io/tags/ssh/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>SSH Config Format</title>
       <link>https://schoeffm.github.io/posts/ssh-config-format/</link>
-      <pubDate>Thu, 11 Jul 2019 15:35:15 +0200</pubDate>
+      <pubDate>Mon, 24 Jun 2019 15:35:15 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/posts/ssh-config-format/</guid>
       <description>&lt;p&gt;Dealing with SSH-connections can become cumbersome quickly especially when configurations change frequently, too.&lt;/p&gt;
