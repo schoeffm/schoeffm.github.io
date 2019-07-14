@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>API versioning using vender specific media types in JAX-RS</title>
+		<meta name="viewport" content="width=device-width">
+		
+		<link rel="stylesheet" href="https://schoeffm.github.io/css/hybrid.css">
+		<link rel="stylesheet" href="https://schoeffm.github.io/css/style.css">
+		<link rel="stylesheet" href="https://schoeffm.github.io/css/colors-dark.css">
+
+		
+	</head>
+	<body>
+		<header id="header">
+			<h1><a href="https://schoeffm.github.io/">Personal PasteBin</a></h1>
+			<p></p>
+		</header>
+
+		<div id="page">
+			<div id="sidebar">
+				<nav>
+	
+</nav>
+
+			</div>
+
+			<div id="content">
+				
+	<article class="post">
+		<h1><a href="https://schoeffm.github.io/posts/api-versioning-with-vender-specific-media-types/">API versioning using vender specific media types in JAX-RS</a> </h1>
+
+		<div class="post-content"><p>Content Negotiation in JAX-RS allows you to leverage the information in the client requests <code>Accept</code> header to map that request to a specific handler-method within your application. In combination with vendor-specific media types this approach can be used for <a href="http://blog.steveklabnik.com/posts/2011-07-03-nobody-understands-rest-or-http">versioning of an API</a>.</p>
+
+<p>So, the idea is to introduce our own, custom media type - a so called <a href="https://tools.ietf.org/html/rfc4288#section-3.2">vendor-specific media types</a> and use that to dispatch clients requests to the proper method.
+A vendor-specific media type starts with a <code>vnd.</code>-prefix for its subtype-name - the rest of the subtype is up to you. So the following are valid vendor-types:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">application/vnd.my.comp+xml
+application/vnd.schoeffm+json</code></pre></div>
+
+<p>By appending the <code>+xml</code> or <code>+json</code>-suffix we give the caller a hint what representation it can actually expect in the respective response.</p>
+
+<p>Another feature of media types is that they can bear parameters - normally used to express precedence - which <a href="http://www.informit.com/articles/article.aspx?p=1566460">could be used for requesting a specific version</a>:</p>
+
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">Accept: application/vnd.schoeffm+json;version<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>.0</code></pre></div>
+
+<p>Although this looks perfect for versioning it doesn&rsquo;t work in practice since the parameter is optional. So when used in declarative method-mapping via <code>@Produces</code> the media-type is still <code>application/vnd.schoeffm+json</code>(without version parameter). Thus, if you have several, parallel implementations for an endpoint just differing in the version-attribute of the <code>javax.ws.rs.Produces</code> annotation the server will throw an exception at startup since it cannot distinguish &lsquo;em.<br/><em><small>It&rsquo;d still be possible to do this using i.e. <code>javax.ws.rs.core.Variant</code>, but this approach seemed just too cumbersome to be used.</small></em>.</p>
+
+<p>Therefore we&rsquo;ve modelled the version-information into the actual subtype-name (see <a href="https://github.com/schoeffm/jax-rs-conneg">this Github-repo</a>)
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@GET</span>
+<span style="color:#a6e22e">@Produces</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;application/vnd.schoeffm-v1+json&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#66d9ef">public</span> Response <span style="color:#a6e22e">customersOld</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> <span style="color:#66d9ef">return</span> Response<span style="color:#f92672">.</span><span style="color:#a6e22e">ok</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Version 1.0&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span> <span style="color:#f92672">}</span>
+
+<span style="color:#a6e22e">@GET</span>
+<span style="color:#a6e22e">@Produces</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;application/vnd.schoeffm-v2+json&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#66d9ef">public</span> Response <span style="color:#a6e22e">customersNew</span><span style="color:#f92672">()</span> <span style="color:#f92672">{</span> <span style="color:#66d9ef">return</span> Response<span style="color:#f92672">.</span><span style="color:#a6e22e">ok</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;Version 2.0&#34;</span><span style="color:#f92672">).</span><span style="color:#a6e22e">build</span><span style="color:#f92672">();</span> <span style="color:#f92672">}</span></code></pre></div></p>
+
+<p>Which allows us to:</p>
+
+<ul>
+<li>have several versions of an API exposed at the same time</li>
+<li>several media-types map to one method (allowing i.e. fallbacks to always server <code>latest</code>)</li>
+<li>stable URIs for resources (so the resource doesn&rsquo;t change with every new version)</li>
+</ul></div>
+
+		<p class="meta">Posted on <span class="postdate">10. June 2019</span></p>
+	</article>
+
+			</div>
+
+			<footer id="footer">
+				<p class="copyright">Powered by
+					<a href="https://gohugo.io/">Hugo</a> and the
+					<a href="https://github.com/bake/solar-theme-hugo">Solar</a>-theme.</p>
+			</footer>
+		</div>
+
+		
+	</body>
+</html>

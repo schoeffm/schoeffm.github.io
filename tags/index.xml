@@ -74,5 +74,41 @@
       <description></description>
     </item>
     
+    <item>
+      <title>java</title>
+      <link>https://schoeffm.github.io/tags/java/</link>
+      <pubDate>Mon, 10 Jun 2019 10:40:12 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/java/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jax-rs</title>
+      <link>https://schoeffm.github.io/tags/jax-rs/</link>
+      <pubDate>Mon, 10 Jun 2019 10:40:12 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/jax-rs/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jee</title>
+      <link>https://schoeffm.github.io/tags/jee/</link>
+      <pubDate>Mon, 10 Jun 2019 10:40:12 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/jee/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>rest</title>
+      <link>https://schoeffm.github.io/tags/rest/</link>
+      <pubDate>Mon, 10 Jun 2019 10:40:12 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/rest/</guid>
+      <description></description>
+    </item>
+    
   </channel>
 </rss>
