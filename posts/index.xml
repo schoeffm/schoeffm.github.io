@@ -6,10 +6,19 @@
     <description>Recent content in Posts on Personal PasteBin</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 13 Jul 2019 14:58:39 +0200</lastBuildDate>
+    <lastBuildDate>Sat, 27 Jul 2019 11:18:59 +0200</lastBuildDate>
     
 	<atom:link href="https://schoeffm.github.io/posts/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Response streaming between JAR-RS and Web-Components (Part 1)</title>
+      <link>https://schoeffm.github.io/posts/response-streaming-between-jaxrs-and-webcomponents-part1/</link>
+      <pubDate>Sat, 27 Jul 2019 11:18:59 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/posts/response-streaming-between-jaxrs-and-webcomponents-part1/</guid>
+      <description>&lt;p&gt;When dealing with JAX-RS resources are normally assembled completely in memory before being put onto the wire for transmission. If the resulting response fits into one single chunk the transmission is accomplished in one go - if the content is bigger than 16kB it will be split into several chunks of that size. You can see the difference in the response headers where a one-go-transmission contains the &lt;code&gt;Content-Length&lt;/code&gt;-header (where the server announces the size of the content to be transmitted) while a chunked transmission lacks the &lt;code&gt;Content-Length&lt;/code&gt; header but contains a &lt;code&gt;Transfer-Encoding: chunked&lt;/code&gt; header.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>Easy en-/decoding using base64</title>
@@ -17,7 +26,7 @@
       <pubDate>Sat, 13 Jul 2019 14:58:39 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/posts/easy-en-decoding-using-base64/</guid>
-      <description>&lt;p&gt;When dealing with &lt;a href=&#34;https://kubernetes.io/docs/concepts/configuration/secret/&#34;&gt;Kubernetes secrets&lt;/a&gt; or when testing REST-services using i.e. &lt;code&gt;curl&lt;/code&gt; it&amp;rsquo;s nice to have a fast&amp;rsquo;n&amp;rsquo;easy way of de- and encoding characters using &lt;a href=&#34;https://de.wikipedia.org/wiki/Base64&#34;&gt;base64&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>&lt;p&gt;When dealing with &lt;a href=&#34;https://kubernetes.io/docs/concepts/configuration/secret/&#34; target=&#34;_blank&#34;&gt;Kubernetes secrets&lt;/a&gt; or when testing REST-services using i.e. &lt;code&gt;curl&lt;/code&gt; it&amp;rsquo;s nice to have a fast&amp;rsquo;n&amp;rsquo;easy way of de- and encoding characters using &lt;a href=&#34;https://de.wikipedia.org/wiki/Base64&#34; target=&#34;_blank&#34;&gt;base64&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -37,7 +46,7 @@
       <pubDate>Mon, 10 Jun 2019 10:40:12 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/posts/api-versioning-with-vender-specific-media-types/</guid>
-      <description>&lt;p&gt;Content Negotiation in JAX-RS allows you to leverage the information in the client requests &lt;code&gt;Accept&lt;/code&gt; header to map that request to a specific handler-method within your application. In combination with vendor-specific media types this approach can be used for &lt;a href=&#34;http://blog.steveklabnik.com/posts/2011-07-03-nobody-understands-rest-or-http&#34;&gt;versioning of an API&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Content Negotiation in JAX-RS allows you to leverage the information in the client requests &lt;code&gt;Accept&lt;/code&gt; header to map that request to a specific handler-method within your application. In combination with vendor-specific media types this approach can be used for &lt;a href=&#34;http://blog.steveklabnik.com/posts/2011-07-03-nobody-understands-rest-or-http&#34; target=&#34;_blank&#34;&gt;versioning of an API&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
   </channel>
