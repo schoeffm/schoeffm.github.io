@@ -20,5 +20,14 @@
       <description>&lt;p&gt;When dealing with JAX-RS resources are normally assembled completely in memory before being put onto the wire for transmission. If the resulting response fits into one single chunk the transmission is accomplished in one go - if the content is bigger than 16kB it will be split into several chunks of that size. You can see the difference in the response headers where a one-go-transmission contains the &lt;code&gt;Content-Length&lt;/code&gt;-header (where the server announces the size of the content to be transmitted) while a chunked transmission lacks the &lt;code&gt;Content-Length&lt;/code&gt; header but contains a &lt;code&gt;Transfer-Encoding: chunked&lt;/code&gt; header.&lt;/p&gt;</description>
     </item>
     
+    <item>
+      <title>Response streaming between JAR-RS and Web-Components (Part 2)</title>
+      <link>https://schoeffm.github.io/posts/response-streaming-between-jaxrs-and-webcomponents-part2/</link>
+      <pubDate>Sat, 27 Jul 2019 11:18:59 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/posts/response-streaming-between-jaxrs-and-webcomponents-part2/</guid>
+      <description>&lt;p&gt;In &lt;a href=&#34;https://schoeffm.github.io/posts/response-streaming-between-jaxrs-and-webcomponents-part1/&#34; target=&#34;_blank&#34;&gt;part one&lt;/a&gt; we had a look at a JAX-RS endpoint that streams its content to the requesting client. Now I&amp;rsquo;d like to show how the &lt;code&gt;fetch&lt;/code&gt;-API can be used to consume that streamed content in a web component.&lt;/p&gt;</description>
+    </item>
+    
   </channel>
 </rss>
