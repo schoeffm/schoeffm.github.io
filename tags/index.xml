@@ -6,7 +6,7 @@
     <description>Recent content in Tags on Personal PasteBin</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 27 Jul 2019 11:18:59 +0200</lastBuildDate>
+    <lastBuildDate>Sun, 28 Jul 2019 12:18:59 +0200</lastBuildDate>
     
 	<atom:link href="https://schoeffm.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,7 +14,7 @@
     <item>
       <title>chunk</title>
       <link>https://schoeffm.github.io/tags/chunk/</link>
-      <pubDate>Sat, 27 Jul 2019 11:18:59 +0200</pubDate>
+      <pubDate>Sun, 28 Jul 2019 12:18:59 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/tags/chunk/</guid>
       <description></description>
@@ -23,9 +23,27 @@
     <item>
       <title>fetch</title>
       <link>https://schoeffm.github.io/tags/fetch/</link>
-      <pubDate>Sat, 27 Jul 2019 11:18:59 +0200</pubDate>
+      <pubDate>Sun, 28 Jul 2019 12:18:59 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/tags/fetch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>streaming</title>
+      <link>https://schoeffm.github.io/tags/streaming/</link>
+      <pubDate>Sun, 28 Jul 2019 12:18:59 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/streaming/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web-components</title>
+      <link>https://schoeffm.github.io/tags/web-components/</link>
+      <pubDate>Sun, 28 Jul 2019 12:18:59 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/web-components/</guid>
       <description></description>
     </item>
     
@@ -62,24 +80,6 @@
       <pubDate>Sat, 27 Jul 2019 11:18:59 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/tags/microprofile/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>streaming</title>
-      <link>https://schoeffm.github.io/tags/streaming/</link>
-      <pubDate>Sat, 27 Jul 2019 11:18:59 +0200</pubDate>
-      
-      <guid>https://schoeffm.github.io/tags/streaming/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>web-components</title>
-      <link>https://schoeffm.github.io/tags/web-components/</link>
-      <pubDate>Sat, 27 Jul 2019 11:18:59 +0200</pubDate>
-      
-      <guid>https://schoeffm.github.io/tags/web-components/</guid>
       <description></description>
     </item>
     
