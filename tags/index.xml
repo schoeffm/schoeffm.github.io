@@ -6,10 +6,46 @@
     <description>Recent content in Tags on Personal PasteBin</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Fri, 02 Aug 2019 08:14:21 +0200</lastBuildDate>
+    <lastBuildDate>Tue, 06 Aug 2019 08:59:37 +0200</lastBuildDate>
     
 	<atom:link href="https://schoeffm.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>cheatsheet</title>
+      <link>https://schoeffm.github.io/tags/cheatsheet/</link>
+      <pubDate>Tue, 06 Aug 2019 08:59:37 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/cheatsheet/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>devops</title>
+      <link>https://schoeffm.github.io/tags/devops/</link>
+      <pubDate>Tue, 06 Aug 2019 08:59:37 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>linux</title>
+      <link>https://schoeffm.github.io/tags/linux/</link>
+      <pubDate>Tue, 06 Aug 2019 08:59:37 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/linux/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>permissions</title>
+      <link>https://schoeffm.github.io/tags/permissions/</link>
+      <pubDate>Tue, 06 Aug 2019 08:59:37 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/permissions/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>testing</title>
@@ -35,15 +71,6 @@
       <pubDate>Tue, 30 Jul 2019 10:08:07 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/tags/cli/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>devops</title>
-      <link>https://schoeffm.github.io/tags/devops/</link>
-      <pubDate>Tue, 30 Jul 2019 10:08:07 +0200</pubDate>
-      
-      <guid>https://schoeffm.github.io/tags/devops/</guid>
       <description></description>
     </item>
     
