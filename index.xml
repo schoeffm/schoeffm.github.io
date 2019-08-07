@@ -28,7 +28,7 @@ Standard Permissions There are three basic permissions which are read, write and
       <pubDate>Fri, 02 Aug 2019 08:14:21 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/posts/testing-web-components/</guid>
-      <description>&lt;p&gt;Testing web-components in isolation can be a challanging task. The (&lt;em&gt;current&lt;/em&gt;) usual suspects in this area still &lt;a href=&#34;https://github.com/jsdom/jsdom/issues/1030&#34; target=&#34;_blank&#34;&gt;lack support for the standard&lt;/a&gt; and thus cannot be used (at least at the time of this writing). Also, the web is swamped by posts about frameworks and thus finding good example projects or tutorials is also challanging.&lt;br/&gt;
+      <description>&lt;p&gt;Testing web-components in isolation can be a challenging task. The (&lt;em&gt;current&lt;/em&gt;) usual suspects in this area still &lt;a href=&#34;https://github.com/jsdom/jsdom/issues/1030&#34; target=&#34;_blank&#34;&gt;lack support for the standard&lt;/a&gt; and thus cannot be used (at least at the time of this writing). Also, the web is swamped by posts about frameworks and thus finding good example projects or tutorials is also challenging.&lt;br/&gt;
 Finally, we found, at least for our project, a good solution which does the job and whose setup I&amp;rsquo;d like to write down/preserve (find the &lt;a href=&#34;https://github.com/schoeffm/testing-web-components&#34; target=&#34;_blank&#34;&gt;corrsponding code in this repo&lt;/a&gt;).&lt;/p&gt;</description>
     </item>
     
