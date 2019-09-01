@@ -3,20 +3,49 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://schoeffm.github.io/posts/cors-by-example/</loc>
+    <lastmod>2019-08-30T15:33:13+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://schoeffm.github.io/</loc>
-    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
+    <lastmod>2019-08-30T15:33:13+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoeffm.github.io/posts/</loc>
-    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
+    <lastmod>2019-08-30T15:33:13+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoeffm.github.io/tags/</loc>
-    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
+    <lastmod>2019-08-30T15:33:13+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/api/</loc>
+    <lastmod>2019-08-30T15:33:13+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/cors/</loc>
+    <lastmod>2019-08-30T15:33:13+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/fetch/</loc>
+    <lastmod>2019-08-30T15:33:13+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/web-components/</loc>
+    <lastmod>2019-08-30T15:33:13+02:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -119,12 +148,6 @@
   </url>
   
   <url>
-    <loc>https://schoeffm.github.io/tags/web-components/</loc>
-    <lastmod>2019-08-02T08:14:21+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://schoeffm.github.io/posts/tcpdump-common-commands/</loc>
     <lastmod>2019-07-30T10:08:07+02:00</lastmod>
   </url>
@@ -160,12 +183,6 @@
   
   <url>
     <loc>https://schoeffm.github.io/tags/chunk/</loc>
-    <lastmod>2019-07-28T12:18:59+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/fetch/</loc>
     <lastmod>2019-07-28T12:18:59+02:00</lastmod>
     <priority>0</priority>
   </url>

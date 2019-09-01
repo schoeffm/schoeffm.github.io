@@ -6,10 +6,46 @@
     <description>Recent content in Tags on Personal PasteBin</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 14 Aug 2019 10:41:28 +0200</lastBuildDate>
+    <lastBuildDate>Fri, 30 Aug 2019 15:33:13 +0200</lastBuildDate>
     
 	<atom:link href="https://schoeffm.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>api</title>
+      <link>https://schoeffm.github.io/tags/api/</link>
+      <pubDate>Fri, 30 Aug 2019 15:33:13 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/api/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cors</title>
+      <link>https://schoeffm.github.io/tags/cors/</link>
+      <pubDate>Fri, 30 Aug 2019 15:33:13 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/cors/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>fetch</title>
+      <link>https://schoeffm.github.io/tags/fetch/</link>
+      <pubDate>Fri, 30 Aug 2019 15:33:13 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/fetch/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>web-components</title>
+      <link>https://schoeffm.github.io/tags/web-components/</link>
+      <pubDate>Fri, 30 Aug 2019 15:33:13 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/web-components/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>ci/cd</title>
@@ -129,15 +165,6 @@
     </item>
     
     <item>
-      <title>web-components</title>
-      <link>https://schoeffm.github.io/tags/web-components/</link>
-      <pubDate>Fri, 02 Aug 2019 08:14:21 +0200</pubDate>
-      
-      <guid>https://schoeffm.github.io/tags/web-components/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>cli</title>
       <link>https://schoeffm.github.io/tags/cli/</link>
       <pubDate>Tue, 30 Jul 2019 10:08:07 +0200</pubDate>
@@ -179,15 +206,6 @@
       <pubDate>Sun, 28 Jul 2019 12:18:59 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/tags/chunk/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>fetch</title>
-      <link>https://schoeffm.github.io/tags/fetch/</link>
-      <pubDate>Sun, 28 Jul 2019 12:18:59 +0200</pubDate>
-      
-      <guid>https://schoeffm.github.io/tags/fetch/</guid>
       <description></description>
     </item>
     
