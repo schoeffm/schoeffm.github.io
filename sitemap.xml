@@ -3,36 +3,89 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://schoeffm.github.io/posts/linux-user-management/</loc>
-    <lastmod>2019-08-10T10:40:33+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://schoeffm.github.io/</loc>
-    <lastmod>2019-08-10T10:40:33+02:00</lastmod>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoeffm.github.io/posts/</loc>
-    <lastmod>2019-08-10T10:40:33+02:00</lastmod>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoeffm.github.io/tags/</loc>
-    <lastmod>2019-08-10T10:40:33+02:00</lastmod>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://schoeffm.github.io/tags/cheatsheet/</loc>
-    <lastmod>2019-08-10T10:40:33+02:00</lastmod>
+    <loc>https://schoeffm.github.io/posts/integration-of-loadtests-within-jenkins-pipelines/</loc>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/ci/cd/</loc>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoeffm.github.io/tags/devops/</loc>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/jenkins/</loc>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/jmeter/</loc>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/loadtesting/</loc>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/performance/</loc>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/pipelines/</loc>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/taurus/</loc>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/testing/</loc>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/posts/linux-user-management/</loc>
+    <lastmod>2019-08-10T10:40:33+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/cheatsheet/</loc>
     <lastmod>2019-08-10T10:40:33+02:00</lastmod>
     <priority>0</priority>
   </url>
@@ -63,12 +116,6 @@
   <url>
     <loc>https://schoeffm.github.io/posts/testing-web-components/</loc>
     <lastmod>2019-08-02T08:14:21+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/testing/</loc>
-    <lastmod>2019-08-02T08:14:21+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>

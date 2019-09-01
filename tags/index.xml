@@ -6,10 +6,91 @@
     <description>Recent content in Tags on Personal PasteBin</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sat, 10 Aug 2019 10:40:33 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 14 Aug 2019 10:41:28 +0200</lastBuildDate>
     
 	<atom:link href="https://schoeffm.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>ci/cd</title>
+      <link>https://schoeffm.github.io/tags/ci/cd/</link>
+      <pubDate>Wed, 14 Aug 2019 10:41:28 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/ci/cd/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>devops</title>
+      <link>https://schoeffm.github.io/tags/devops/</link>
+      <pubDate>Wed, 14 Aug 2019 10:41:28 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/devops/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jenkins</title>
+      <link>https://schoeffm.github.io/tags/jenkins/</link>
+      <pubDate>Wed, 14 Aug 2019 10:41:28 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/jenkins/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jmeter</title>
+      <link>https://schoeffm.github.io/tags/jmeter/</link>
+      <pubDate>Wed, 14 Aug 2019 10:41:28 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/jmeter/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>loadtesting</title>
+      <link>https://schoeffm.github.io/tags/loadtesting/</link>
+      <pubDate>Wed, 14 Aug 2019 10:41:28 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/loadtesting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>performance</title>
+      <link>https://schoeffm.github.io/tags/performance/</link>
+      <pubDate>Wed, 14 Aug 2019 10:41:28 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/performance/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>pipelines</title>
+      <link>https://schoeffm.github.io/tags/pipelines/</link>
+      <pubDate>Wed, 14 Aug 2019 10:41:28 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/pipelines/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>taurus</title>
+      <link>https://schoeffm.github.io/tags/taurus/</link>
+      <pubDate>Wed, 14 Aug 2019 10:41:28 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/taurus/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>testing</title>
+      <link>https://schoeffm.github.io/tags/testing/</link>
+      <pubDate>Wed, 14 Aug 2019 10:41:28 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/testing/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>cheatsheet</title>
@@ -17,15 +98,6 @@
       <pubDate>Sat, 10 Aug 2019 10:40:33 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/tags/cheatsheet/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>devops</title>
-      <link>https://schoeffm.github.io/tags/devops/</link>
-      <pubDate>Sat, 10 Aug 2019 10:40:33 +0200</pubDate>
-      
-      <guid>https://schoeffm.github.io/tags/devops/</guid>
       <description></description>
     </item>
     
@@ -53,15 +125,6 @@
       <pubDate>Tue, 06 Aug 2019 08:59:37 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/tags/permissions/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>testing</title>
-      <link>https://schoeffm.github.io/tags/testing/</link>
-      <pubDate>Fri, 02 Aug 2019 08:14:21 +0200</pubDate>
-      
-      <guid>https://schoeffm.github.io/tags/testing/</guid>
       <description></description>
     </item>
     
