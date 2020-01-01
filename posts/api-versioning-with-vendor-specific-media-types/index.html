@@ -11,7 +11,7 @@
 <meta property='og:site_name' content='Personal PasteBin'>
 <meta property='og:type' content='article'><meta property='article:section' content='posts'><meta property='article:tag' content='jax-rs'><meta property='article:tag' content='jee'><meta property='article:tag' content='jakartaee'><meta property='article:tag' content='microprofile'><meta property='article:tag' content='rest'><meta property='article:published_time' content='2019-06-10T00:00:00&#43;02:00'/><meta property='article:modified_time' content='2019-06-10T10:40:12&#43;02:00'/><meta name='twitter:card' content='summary'>
 
-<meta name="generator" content="Hugo 0.56.3" />
+<meta name="generator" content="Hugo 0.59.1" />
 
   <title>API versioning using vender specific media types in JAX-RS • Personal PasteBin</title>
   <link rel='canonical' href='https://schoeffm.github.io/posts/api-versioning-with-vendor-specific-media-types/'>
@@ -85,7 +85,13 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/cors/' style='font-size:1em'>cors</a>
       </li><li>
+        <a href='/tags/dev/' style='font-size:1em'>dev</a>
+      </li><li>
         <a href='/tags/devops/' style='font-size:2em'>devops</a>
+      </li><li>
+        <a href='/tags/docker/' style='font-size:1em'>docker</a>
+      </li><li>
+        <a href='/tags/docker4mac/' style='font-size:1em'>docker4mac</a>
       </li><li>
         <a href='/tags/fetch/' style='font-size:1.2em'>fetch</a>
       </li><li>
@@ -265,11 +271,11 @@ application/vnd.schoeffm+json</code></pre></div>
 <p>Therefore we&rsquo;ve modelled the version-information into the actual subtype-name (see <a href="https://github.com/schoeffm/jax-rs-conneg" target="_blank">this Github-repo</a>)
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@GET</span>
 <span style="color:#a6e22e">@Produces</span>(<span style="color:#e6db74">&#34;application/vnd.schoeffm-v1+json&#34;</span>)
-<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Response</span> customersOld() { <span style="color:#66d9ef">return</span> Response.<span style="color:#a6e22e">ok</span>(<span style="color:#e6db74">&#34;Version 1.0&#34;</span>).<span style="color:#a6e22e">build</span>(); }
+<span style="color:#960050;background-color:#1e0010">public Response </span>customersOld() { <span style="color:#66d9ef">return</span> Response.<span style="color:#a6e22e">ok</span>(<span style="color:#e6db74">&#34;Version 1.0&#34;</span>).<span style="color:#a6e22e">build</span>(); }
 
 <span style="color:#a6e22e">@GET</span>
 <span style="color:#a6e22e">@Produces</span>(<span style="color:#e6db74">&#34;application/vnd.schoeffm-v2+json&#34;</span>)
-<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Response</span> customersNew() { <span style="color:#66d9ef">return</span> Response.<span style="color:#a6e22e">ok</span>(<span style="color:#e6db74">&#34;Version 2.0&#34;</span>).<span style="color:#a6e22e">build</span>(); }</code></pre></div></p>
+<span style="color:#960050;background-color:#1e0010">public Response </span>customersNew() { <span style="color:#66d9ef">return</span> Response.<span style="color:#a6e22e">ok</span>(<span style="color:#e6db74">&#34;Version 2.0&#34;</span>).<span style="color:#a6e22e">build</span>(); }</code></pre></div></p>
 
 <p>Which allows us to:</p>
 
@@ -317,7 +323,7 @@ application/vnd.schoeffm+json</code></pre></div>
 
       <footer id='footer' class='footer'>
         <div class='container sep-before'><div class='copyright'>
-  <p> &copy; 2019 schoeffm </p>
+  <p> &copy; 2019-2020 schoeffm </p>
 </div>
 
         </div>

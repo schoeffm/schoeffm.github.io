@@ -1,6 +1,56 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://schoeffm.github.io/posts/access-host-from-inside-a-docker-container/</loc>
+    <lastmod>2020-01-01T12:00:56+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/dev/</loc>
+    <lastmod>2020-01-01T12:00:56+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/docker/</loc>
+    <lastmod>2020-01-01T12:00:56+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/docker4mac/</loc>
+    <lastmod>2020-01-01T12:00:56+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/</loc>
+    <lastmod>2020-01-01T12:00:56+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/posts/</loc>
+    <lastmod>2020-01-01T12:00:56+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/</loc>
+    <lastmod>2020-01-01T12:00:56+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/authentication/</loc>
+    <lastmod>2019-09-20T07:52:55+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/java/</loc>
+    <lastmod>2019-09-20T07:52:55+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/ntlm/</loc>
+    <lastmod>2019-09-20T07:52:55+02:00</lastmod>
+  </url>
   
   <url>
     <loc>https://schoeffm.github.io/posts/ntlm-authentication-in-java/</loc>
@@ -8,45 +58,28 @@
   </url>
   
   <url>
-    <loc>https://schoeffm.github.io/</loc>
-    <lastmod>2019-09-20T07:52:55+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/posts/</loc>
-    <lastmod>2019-09-20T07:52:55+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/</loc>
-    <lastmod>2019-09-20T07:52:55+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/authentication/</loc>
-    <lastmod>2019-09-20T07:52:55+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/java/</loc>
-    <lastmod>2019-09-20T07:52:55+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/ntlm/</loc>
-    <lastmod>2019-09-20T07:52:55+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://schoeffm.github.io/tags/security/</loc>
     <lastmod>2019-09-20T07:52:55+02:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/cli/</loc>
+    <lastmod>2019-09-19T16:27:21+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/devops/</loc>
+    <lastmod>2019-09-19T16:27:21+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/mitmproxy/</loc>
+    <lastmod>2019-09-19T16:27:21+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/network/</loc>
+    <lastmod>2019-09-19T16:27:21+02:00</lastmod>
   </url>
   
   <url>
@@ -55,39 +88,23 @@
   </url>
   
   <url>
-    <loc>https://schoeffm.github.io/tags/cli/</loc>
-    <lastmod>2019-09-19T16:27:21+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/devops/</loc>
-    <lastmod>2019-09-19T16:27:21+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/mitmproxy/</loc>
-    <lastmod>2019-09-19T16:27:21+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/network/</loc>
-    <lastmod>2019-09-19T16:27:21+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://schoeffm.github.io/tags/proxy/</loc>
     <lastmod>2019-09-19T16:27:21+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoeffm.github.io/tags/tools/</loc>
     <lastmod>2019-09-19T16:27:21+02:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/api/</loc>
+    <lastmod>2019-08-30T15:33:13+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/cors/</loc>
+    <lastmod>2019-08-30T15:33:13+02:00</lastmod>
   </url>
   
   <url>
@@ -96,27 +113,53 @@
   </url>
   
   <url>
-    <loc>https://schoeffm.github.io/tags/api/</loc>
-    <lastmod>2019-08-30T15:33:13+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/cors/</loc>
-    <lastmod>2019-08-30T15:33:13+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://schoeffm.github.io/tags/fetch/</loc>
     <lastmod>2019-08-30T15:33:13+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoeffm.github.io/tags/web-components/</loc>
     <lastmod>2019-08-30T15:33:13+02:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/ci/cd/</loc>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/jenkins/</loc>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/jmeter/</loc>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/loadtesting/</loc>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/performance/</loc>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/pipelines/</loc>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/taurus/</loc>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/testing/</loc>
+    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
   </url>
   
   <url>
@@ -125,51 +168,13 @@
   </url>
   
   <url>
-    <loc>https://schoeffm.github.io/tags/ci/cd/</loc>
-    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
-    <priority>0</priority>
+    <loc>https://schoeffm.github.io/tags/cheatsheet/</loc>
+    <lastmod>2019-08-10T10:40:33+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://schoeffm.github.io/tags/jenkins/</loc>
-    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/jmeter/</loc>
-    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/loadtesting/</loc>
-    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/performance/</loc>
-    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/pipelines/</loc>
-    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/taurus/</loc>
-    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/testing/</loc>
-    <lastmod>2019-08-14T10:41:28+02:00</lastmod>
-    <priority>0</priority>
+    <loc>https://schoeffm.github.io/tags/linux/</loc>
+    <lastmod>2019-08-10T10:40:33+02:00</lastmod>
   </url>
   
   <url>
@@ -178,21 +183,8 @@
   </url>
   
   <url>
-    <loc>https://schoeffm.github.io/tags/cheatsheet/</loc>
-    <lastmod>2019-08-10T10:40:33+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/linux/</loc>
-    <lastmod>2019-08-10T10:40:33+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://schoeffm.github.io/tags/users/</loc>
     <lastmod>2019-08-10T10:40:33+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -203,7 +195,6 @@
   <url>
     <loc>https://schoeffm.github.io/tags/permissions/</loc>
     <lastmod>2019-08-06T08:59:37+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
@@ -212,14 +203,18 @@
   </url>
   
   <url>
+    <loc>https://schoeffm.github.io/tags/tcpdump/</loc>
+    <lastmod>2019-07-30T10:08:07+02:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://schoeffm.github.io/posts/tcpdump-common-commands/</loc>
     <lastmod>2019-07-30T10:08:07+02:00</lastmod>
   </url>
   
   <url>
-    <loc>https://schoeffm.github.io/tags/tcpdump/</loc>
-    <lastmod>2019-07-30T10:08:07+02:00</lastmod>
-    <priority>0</priority>
+    <loc>https://schoeffm.github.io/tags/chunk/</loc>
+    <lastmod>2019-07-28T12:18:59+02:00</lastmod>
   </url>
   
   <url>
@@ -228,15 +223,28 @@
   </url>
   
   <url>
-    <loc>https://schoeffm.github.io/tags/chunk/</loc>
+    <loc>https://schoeffm.github.io/tags/streaming/</loc>
     <lastmod>2019-07-28T12:18:59+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://schoeffm.github.io/tags/streaming/</loc>
-    <lastmod>2019-07-28T12:18:59+02:00</lastmod>
-    <priority>0</priority>
+    <loc>https://schoeffm.github.io/tags/jakartaee/</loc>
+    <lastmod>2019-07-27T11:18:59+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/jax-rs/</loc>
+    <lastmod>2019-07-27T11:18:59+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/jee/</loc>
+    <lastmod>2019-07-27T11:18:59+02:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/microprofile/</loc>
+    <lastmod>2019-07-27T11:18:59+02:00</lastmod>
   </url>
   
   <url>
@@ -245,27 +253,8 @@
   </url>
   
   <url>
-    <loc>https://schoeffm.github.io/tags/jakartaee/</loc>
-    <lastmod>2019-07-27T11:18:59+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/jax-rs/</loc>
-    <lastmod>2019-07-27T11:18:59+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/jee/</loc>
-    <lastmod>2019-07-27T11:18:59+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/microprofile/</loc>
-    <lastmod>2019-07-27T11:18:59+02:00</lastmod>
-    <priority>0</priority>
+    <loc>https://schoeffm.github.io/tags/base64/</loc>
+    <lastmod>2019-07-13T14:58:39+02:00</lastmod>
   </url>
   
   <url>
@@ -274,38 +263,28 @@
   </url>
   
   <url>
-    <loc>https://schoeffm.github.io/tags/base64/</loc>
-    <lastmod>2019-07-13T14:58:39+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
     <loc>https://schoeffm.github.io/tags/kubernetes/</loc>
     <lastmod>2019-07-13T14:58:39+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoeffm.github.io/tags/openshift/</loc>
     <lastmod>2019-07-13T14:58:39+02:00</lastmod>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/posts/ssh-config-format/</loc>
-    <lastmod>2019-06-24T15:35:15+02:00</lastmod>
   </url>
   
   <url>
     <loc>https://schoeffm.github.io/tags/configuration/</loc>
     <lastmod>2019-06-24T15:35:15+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoeffm.github.io/tags/ssh/</loc>
     <lastmod>2019-06-24T15:35:15+02:00</lastmod>
-    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/posts/ssh-config-format/</loc>
+    <lastmod>2019-06-24T15:35:15+02:00</lastmod>
   </url>
   
   <url>
@@ -316,22 +295,18 @@
   <url>
     <loc>https://schoeffm.github.io/tags/rest/</loc>
     <lastmod>2019-06-10T10:40:12+02:00</lastmod>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoeffm.github.io/authors/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoeffm.github.io/categories/</loc>
-    <priority>0</priority>
   </url>
   
   <url>
     <loc>https://schoeffm.github.io/series/</loc>
-    <priority>0</priority>
   </url>
   
 </urlset>

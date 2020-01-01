@@ -13,7 +13,7 @@ Finally, I ended up with a setup where the app used a man-in-the-middle proxy fo
 <meta property='og:site_name' content='Personal PasteBin'>
 <meta property='og:type' content='article'><meta property='article:section' content='posts'><meta property='article:tag' content='mitmproxy'><meta property='article:tag' content='proxy'><meta property='article:tag' content='cli'><meta property='article:tag' content='devops'><meta property='article:tag' content='network'><meta property='article:tag' content='tools'><meta property='article:published_time' content='2019-09-19T16:27:21&#43;02:00'/><meta property='article:modified_time' content='2019-09-19T16:27:21&#43;02:00'/><meta name='twitter:card' content='summary'>
 
-<meta name="generator" content="Hugo 0.56.3" />
+<meta name="generator" content="Hugo 0.59.1" />
 
   <title>Network Debugging of Containerized Java Apps • Personal PasteBin</title>
   <link rel='canonical' href='https://schoeffm.github.io/posts/network-debugging-of-containerized-java-apps/'>
@@ -87,7 +87,13 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/cors/' style='font-size:1em'>cors</a>
       </li><li>
+        <a href='/tags/dev/' style='font-size:1em'>dev</a>
+      </li><li>
         <a href='/tags/devops/' style='font-size:2em'>devops</a>
+      </li><li>
+        <a href='/tags/docker/' style='font-size:1em'>docker</a>
+      </li><li>
+        <a href='/tags/docker4mac/' style='font-size:1em'>docker4mac</a>
       </li><li>
         <a href='/tags/fetch/' style='font-size:1.2em'>fetch</a>
       </li><li>
@@ -275,10 +281,10 @@ Luckily, during installation <a href="https://docs.mitmproxy.org/stable/concepts
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> payara/server-full:5.192</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Import the SSL certificates of mitm</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>USER root<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>COPY $HOME/.mitmproxy/mitmproxy-ca-cert.cer .<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> root</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> $HOME/.mitmproxy/mitmproxy-ca-cert.cer .<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> keytool -importcert -file ./mitmproxy-ca-cert.cer -keystore $PAYARA_DIR/glassfish/domains/production/config/cacerts.jks -alias MITM -storepass changeit -noprompt<span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010"></span>USER payara<span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> payara</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>...</code></pre></div>
 
 <h3 id="3-make-use-of-the-proxy">3. make use of the proxy</h3>
@@ -354,7 +360,7 @@ For later analysis you can even stream the requests to a file while looking at &
 
       <footer id='footer' class='footer'>
         <div class='container sep-before'><div class='copyright'>
-  <p> &copy; 2019 schoeffm </p>
+  <p> &copy; 2019-2020 schoeffm </p>
 </div>
 
         </div>

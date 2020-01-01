@@ -11,7 +11,7 @@
 <meta property='og:site_name' content='Personal PasteBin'>
 <meta property='og:type' content='article'><meta property='article:section' content='posts'><meta property='article:tag' content='jax-rs'><meta property='article:tag' content='jee'><meta property='article:tag' content='jakartaee'><meta property='article:tag' content='microprofile'><meta property='article:tag' content='streaming'><meta property='article:published_time' content='2019-07-25T00:00:00&#43;02:00'/><meta property='article:modified_time' content='2019-07-27T11:18:59&#43;02:00'/><meta name='twitter:card' content='summary'>
 
-<meta name="generator" content="Hugo 0.56.3" />
+<meta name="generator" content="Hugo 0.59.1" />
 
   <title>Response streaming between JAX-RS and Web-Components (Part 1) • Personal PasteBin</title>
   <link rel='canonical' href='https://schoeffm.github.io/posts/response-streaming-between-jaxrs-and-webcomponents-part1/'>
@@ -85,7 +85,13 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/cors/' style='font-size:1em'>cors</a>
       </li><li>
+        <a href='/tags/dev/' style='font-size:1em'>dev</a>
+      </li><li>
         <a href='/tags/devops/' style='font-size:2em'>devops</a>
+      </li><li>
+        <a href='/tags/docker/' style='font-size:1em'>docker</a>
+      </li><li>
+        <a href='/tags/docker4mac/' style='font-size:1em'>docker4mac</a>
       </li><li>
         <a href='/tags/fetch/' style='font-size:1.2em'>fetch</a>
       </li><li>
@@ -256,10 +262,10 @@ Here&rsquo;s an example (simulating a large resource which also takes long to lo
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@GET</span>
 <span style="color:#a6e22e">@Path</span>(<span style="color:#e6db74">&#34;stream&#34;</span>)
 <span style="color:#a6e22e">@Produces</span>(MediaType.<span style="color:#a6e22e">TEXT_PLAIN</span>)
-<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">Response</span> streamMe() {
-    StreamingOutput <span style="color:#a6e22e">stream</span> <span style="color:#f92672">=</span> output <span style="color:#f92672">-&gt;</span> {
-        Writer <span style="color:#a6e22e">writer</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedWriter(<span style="color:#66d9ef">new</span> OutputStreamWriter(output));
-        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> 1000; i<span style="color:#f92672">++</span>) {
+<span style="color:#960050;background-color:#1e0010">public Response </span>streamMe() {
+    <span style="color:#960050;background-color:#1e0010">StreamingOutput stream </span><span style="color:#f92672">=</span> output <span style="color:#f92672">-&gt;</span> {
+        <span style="color:#960050;background-color:#1e0010">Writer writer </span><span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedWriter(<span style="color:#66d9ef">new</span> OutputStreamWriter(output));
+        <span style="color:#66d9ef">for</span> (<span style="color:#960050;background-color:#1e0010">int i </span><span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> 1000; i<span style="color:#f92672">++</span>) {
             writer.<span style="color:#a6e22e">write</span>(Json.<span style="color:#a6e22e">createObjectBuilder</span>()
                     .<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;index&#34;</span>, i)
                     .<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;content&#34;</span>, <span style="color:#e6db74">&#34;Some random text which actually can be generated in order to be really random&#34;</span>)
@@ -344,7 +350,7 @@ Here&rsquo;s an example (simulating a large resource which also takes long to lo
 
       <footer id='footer' class='footer'>
         <div class='container sep-before'><div class='copyright'>
-  <p> &copy; 2019 schoeffm </p>
+  <p> &copy; 2019-2020 schoeffm </p>
 </div>
 
         </div>
