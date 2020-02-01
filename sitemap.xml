@@ -53,6 +53,21 @@
   </url>
   
   <url>
+    <loc>https://schoeffm.github.io/tags/jax-rs/</loc>
+    <lastmod>2020-01-16T09:00:36+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/payara/</loc>
+    <lastmod>2020-01-16T09:00:36+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/posts/switching-jaxrs-serializer-in-payara/</loc>
+    <lastmod>2020-01-16T09:00:36+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://schoeffm.github.io/posts/access-host-from-inside-a-docker-container/</loc>
     <lastmod>2020-01-01T12:00:56+01:00</lastmod>
   </url>
@@ -254,11 +269,6 @@
   
   <url>
     <loc>https://schoeffm.github.io/tags/jakartaee/</loc>
-    <lastmod>2019-07-27T11:18:59+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/jax-rs/</loc>
     <lastmod>2019-07-27T11:18:59+02:00</lastmod>
   </url>
   

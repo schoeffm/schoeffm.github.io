@@ -17,10 +17,7 @@
       <pubDate>Wed, 29 Jan 2020 15:07:59 +0100</pubDate>
       
       <guid>https://schoeffm.github.io/posts/jq-by-example/</guid>
-      <description>Inspired by a nice tutorial on Baeldung I&amp;rsquo;ve decided to write done some usual suspects when working with jq. Hence, this is more like a cheatsheet than a regular post.
-For practitioners and interactive learners I also recommend the great jq-play online editor where you can try jq directly in the browser.
-For our examples below let&amp;rsquo;s go with the followin&amp;rsquo; JSON-input (fetched from a micro-profile /health-endpoint).
-{ &amp;#34;outcome&amp;#34;: &amp;#34;UP&amp;#34;, &amp;#34;checks&amp;#34;: [ { &amp;#34;name&amp;#34;: &amp;#34;core-isAlive&amp;#34;, &amp;#34;state&amp;#34;: &amp;#34;UP&amp;#34;, &amp;#34;data&amp;#34;: { &amp;#34;buildtime&amp;#34;: &amp;#34;2020-01-29T12:46:05.</description>
+      <description>&lt;p&gt;Inspired by a &lt;a href=&#34;https://www.baeldung.com/linux/jq-command-json&#34;&gt;nice tutorial on Baeldung&lt;/a&gt; I&amp;rsquo;ve decided to write done some usual suspects when working with &lt;a href=&#34;https://stedolan.github.io/jq/manual/&#34;&gt;jq&lt;/a&gt;. Hence, this is more like a cheatsheet than a regular post.&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -17,10 +17,17 @@
       <pubDate>Wed, 29 Jan 2020 15:07:59 +0100</pubDate>
       
       <guid>https://schoeffm.github.io/posts/jq-by-example/</guid>
-      <description>Inspired by a nice tutorial on Baeldung I&amp;rsquo;ve decided to write done some usual suspects when working with jq. Hence, this is more like a cheatsheet than a regular post.
-For practitioners and interactive learners I also recommend the great jq-play online editor where you can try jq directly in the browser.
-For our examples below let&amp;rsquo;s go with the followin&amp;rsquo; JSON-input (fetched from a micro-profile /health-endpoint).
-{ &amp;#34;outcome&amp;#34;: &amp;#34;UP&amp;#34;, &amp;#34;checks&amp;#34;: [ { &amp;#34;name&amp;#34;: &amp;#34;core-isAlive&amp;#34;, &amp;#34;state&amp;#34;: &amp;#34;UP&amp;#34;, &amp;#34;data&amp;#34;: { &amp;#34;buildtime&amp;#34;: &amp;#34;2020-01-29T12:46:05.</description>
+      <description>&lt;p&gt;Inspired by a &lt;a href=&#34;https://www.baeldung.com/linux/jq-command-json&#34;&gt;nice tutorial on Baeldung&lt;/a&gt; I&amp;rsquo;ve decided to write done some usual suspects when working with &lt;a href=&#34;https://stedolan.github.io/jq/manual/&#34;&gt;jq&lt;/a&gt;. Hence, this is more like a cheatsheet than a regular post.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Switching JaxRS serializer in payara</title>
+      <link>https://schoeffm.github.io/posts/switching-jaxrs-serializer-in-payara/</link>
+      <pubDate>Thu, 16 Jan 2020 09:00:36 +0100</pubDate>
+      
+      <guid>https://schoeffm.github.io/posts/switching-jaxrs-serializer-in-payara/</guid>
+      <description>When working with Payara I stumble every once in a while over JSON-serialization issues. Payara v4 uses MOXy as default provider while Payara v5 comes with JsonB-support which apparently makes use of Yasson.
+Although, after moving from v4 to v5 I&amp;rsquo;m fine with the JsonB-default it may still be useful to use Jackson as JSON provider instead of the default one (to be honest, many things just worked out-of-the-box with Jackson like reflective access to props (no extra getter necessary) or support for Maps etc.</description>
     </item>
     
     <item>
