@@ -2,17 +2,11 @@
 <html lang='en'><head>
   <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
-<meta name='description' content='Inspired by a nice tutorial on Baeldung I&rsquo;ve decided to write done some usual suspects when working with jq. Hence, this is more like a cheatsheet than a regular post.
-For practitioners and interactive learners I also recommend the great jq-play online editor where you can try jq directly in the browser.
-For our examples below let&rsquo;s go with the followin&rsquo; JSON-input (fetched from a micro-profile /health-endpoint).
-{ &#34;outcome&#34;: &#34;UP&#34;, &#34;checks&#34;: [ { &#34;name&#34;: &#34;core-isAlive&#34;, &#34;state&#34;: &#34;UP&#34;, &#34;data&#34;: { &#34;buildtime&#34;: &#34;2020-01-29T12:46:05.'>
+<meta name='description' content='Inspired by a nice tutorial on Baeldung I&rsquo;ve decided to write done some usual suspects when working with jq. Hence, this is more like a cheatsheet than a regular post.'>
 <meta name='theme-color' content='#44ccff'>
 
 <meta property='og:title' content='jq by example • Personal PasteBin'>
-<meta property='og:description' content='Inspired by a nice tutorial on Baeldung I&rsquo;ve decided to write done some usual suspects when working with jq. Hence, this is more like a cheatsheet than a regular post.
-For practitioners and interactive learners I also recommend the great jq-play online editor where you can try jq directly in the browser.
-For our examples below let&rsquo;s go with the followin&rsquo; JSON-input (fetched from a micro-profile /health-endpoint).
-{ &#34;outcome&#34;: &#34;UP&#34;, &#34;checks&#34;: [ { &#34;name&#34;: &#34;core-isAlive&#34;, &#34;state&#34;: &#34;UP&#34;, &#34;data&#34;: { &#34;buildtime&#34;: &#34;2020-01-29T12:46:05.'>
+<meta property='og:description' content='Inspired by a nice tutorial on Baeldung I&rsquo;ve decided to write done some usual suspects when working with jq. Hence, this is more like a cheatsheet than a regular post.'>
 <meta property='og:url' content='https://schoeffm.github.io/posts/jq-by-example/'>
 <meta property='og:site_name' content='Personal PasteBin'>
 <meta property='og:type' content='article'><meta property='article:section' content='posts'><meta property='article:tag' content='cli'><meta property='article:tag' content='jq'><meta property='article:tag' content='json'><meta property='article:tag' content='tools'><meta property='article:tag' content='scripting'><meta property='article:tag' content='bash'><meta property='article:published_time' content='2020-01-29T15:07:59&#43;01:00'/><meta property='article:modified_time' content='2020-01-29T15:07:59&#43;01:00'/><meta name='twitter:card' content='summary'>
@@ -107,7 +101,7 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/java/' style='font-size:1em'>java</a>
       </li><li>
-        <a href='/tags/jax-rs/' style='font-size:1.2em'>jax-rs</a>
+        <a href='/tags/jax-rs/' style='font-size:1.4em'>jax-rs</a>
       </li><li>
         <a href='/tags/jee/' style='font-size:1.2em'>jee</a>
       </li><li>
@@ -134,6 +128,8 @@ gtag('config', 'UA-148436067-1');
         <a href='/tags/ntlm/' style='font-size:1em'>ntlm</a>
       </li><li>
         <a href='/tags/openshift/' style='font-size:1em'>openshift</a>
+      </li><li>
+        <a href='/tags/payara/' style='font-size:1em'>payara</a>
       </li><li>
         <a href='/tags/performance/' style='font-size:1em'>performance</a>
       </li><li>
@@ -371,7 +367,6 @@ Use <code>add</code> in case you&rsquo;d like to sum things up - to convert type
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">&gt; <span style="color:#75715e"># we&#39;d like to extract only the second part of buildtime &#39;2020-01-29T12:46:05.183Z&#39;</span>
 &gt; jq <span style="color:#e6db74">&#39;.checks[].data.buildtime | select(. != null) | split(&#34;T&#34;) | last&#39;</span> file.json
 12:46:05.183Z</code></pre></div></p>
-
 </div>
 
   
@@ -392,7 +387,7 @@ Use <code>add</code> in case you&rsquo;d like to sum things up - to convert type
 
 <nav class='entry-nav'>
   <div class='container'><div class='prev-entry sep-before'>
-      <a href='/posts/access-host-from-inside-a-docker-container/'>
+      <a href='/posts/switching-jaxrs-serializer-in-payara/'>
         <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
   
   <line x1="20" y1="12" x2="4" y2="12"/>
@@ -400,7 +395,7 @@ Use <code>add</code> in case you&rsquo;d like to sum things up - to convert type
   
 </svg>
  Previous</span>
-        <span class='screen-reader-text'>Previous post: </span>Access Host From Inside a Docker Container</a>
+        <span class='screen-reader-text'>Previous post: </span>Switching JaxRS serializer in payara</a>
     </div></div>
 </nav>
 
