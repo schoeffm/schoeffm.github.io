@@ -3,19 +3,17 @@
   <meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'>
 <meta name='description' content='Dealing with SSH-connections can become cumbersome quickly especially when configurations change frequently, too.
-
 Luckily, you can pre-configure most of a connections settings in a user specific config-file located in your ~/.ssh-folder called config.'>
 <meta name='theme-color' content='#44ccff'>
 
 <meta property='og:title' content='SSH Config Format • Personal PasteBin'>
 <meta property='og:description' content='Dealing with SSH-connections can become cumbersome quickly especially when configurations change frequently, too.
-
 Luckily, you can pre-configure most of a connections settings in a user specific config-file located in your ~/.ssh-folder called config.'>
 <meta property='og:url' content='https://schoeffm.github.io/posts/ssh-config-format/'>
 <meta property='og:site_name' content='Personal PasteBin'>
 <meta property='og:type' content='article'><meta property='article:section' content='posts'><meta property='article:tag' content='ssh'><meta property='article:tag' content='devops'><meta property='article:tag' content='cli'><meta property='article:tag' content='configuration'><meta property='article:published_time' content='2019-06-24T00:00:00&#43;02:00'/><meta property='article:modified_time' content='2019-06-24T15:35:15&#43;02:00'/><meta name='twitter:card' content='summary'>
 
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.63.2" />
 
   <title>SSH Config Format • Personal PasteBin</title>
   <link rel='canonical' href='https://schoeffm.github.io/posts/ssh-config-format/'>
@@ -77,13 +75,15 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/base64/' style='font-size:1em'>base64</a>
       </li><li>
+        <a href='/tags/bash/' style='font-size:1em'>bash</a>
+      </li><li>
         <a href='/tags/cheatsheet/' style='font-size:1.2em'>cheatsheet</a>
       </li><li>
         <a href='/tags/chunk/' style='font-size:1em'>chunk</a>
       </li><li>
         <a href='/tags/ci/cd/' style='font-size:1em'>ci/cd</a>
       </li><li>
-        <a href='/tags/cli/' style='font-size:1.6em'>cli</a>
+        <a href='/tags/cli/' style='font-size:1.8em'>cli</a>
       </li><li>
         <a href='/tags/configuration/' style='font-size:1em'>configuration</a>
       </li><li>
@@ -111,6 +111,10 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/jmeter/' style='font-size:1em'>jmeter</a>
       </li><li>
+        <a href='/tags/jq/' style='font-size:1em'>jq</a>
+      </li><li>
+        <a href='/tags/json/' style='font-size:1em'>json</a>
+      </li><li>
         <a href='/tags/kubernetes/' style='font-size:1em'>kubernetes</a>
       </li><li>
         <a href='/tags/linux/' style='font-size:1.2em'>linux</a>
@@ -137,6 +141,8 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/rest/' style='font-size:1em'>rest</a>
       </li><li>
+        <a href='/tags/scripting/' style='font-size:1em'>scripting</a>
+      </li><li>
         <a href='/tags/security/' style='font-size:1em'>security</a>
       </li><li>
         <a href='/tags/ssh/' style='font-size:1em'>ssh</a>
@@ -149,7 +155,7 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/testing/' style='font-size:1.2em'>testing</a>
       </li><li>
-        <a href='/tags/tools/' style='font-size:1.2em'>tools</a>
+        <a href='/tags/tools/' style='font-size:1.4em'>tools</a>
       </li><li>
         <a href='/tags/users/' style='font-size:1em'>users</a>
       </li><li>
@@ -257,27 +263,20 @@ gtag('config', 'UA-148436067-1');
 
   <div class='container entry-content'>
   <p>Dealing with SSH-connections can become cumbersome quickly especially when configurations change frequently, too.</p>
-
 <p>Luckily, you can pre-configure most of a connections settings in a user specific config-file located in your <code>~/.ssh</code>-folder called <code>config</code>.</p>
-
 <p>For example:</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># content of ~/.ssh/config</span>
 Host gateway
-    HostName <span style="color:#ae81ff">160</span>.46.188.153
+    HostName 160.46.188.153
     User cloud
     IdentityFile ~/.ssh/id_rsa</code></pre></div>
-
 <p>This entry is equivalent to the inline command <code>ssh cloud@160.46.188.153 -i ~/.ssh/id_rsa</code> but can be leveraged now by:</p>
-
 <p><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">$ ssh gateway</code></pre></div>
 Much shorter and even more expressive than a cryptic IP-address.</p>
-
-<p>Of course, you can add a lot more settings - for special use-cases lookup the <a href="https://linux.die.net/man/5/ssh_config" target="_blank">documentation for ssh-config</a> files. Here are some usual suspects that come handy:</p>
-
+<p>Of course, you can add a lot more settings - for special use-cases lookup the <a href="https://linux.die.net/man/5/ssh_config">documentation for ssh-config</a> files. Here are some usual suspects that come handy:</p>
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -296,30 +295,35 @@ Much shorter and even more expressive than a cryptic IP-address.</p>
 <td style="vertical-align:top;padding:0;margin:0;border:0;;width:100%">
 <pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># content of ~/.ssh/config</span>
 Host gateway
-    HostName <span style="color:#ae81ff">160</span>.46.188.153
+    HostName 160.46.188.153
     User cloud
     IdentityFile ~/.ssh/id_rsa
 <span style="display:block;width:100%;background-color:#3c3d38">    ForwardX11 yes
 </span><span style="display:block;width:100%;background-color:#3c3d38">    ForwardAgent yes
-</span><span style="display:block;width:100%;background-color:#3c3d38">    LocalForward <span style="color:#ae81ff">9906</span> <span style="color:#ae81ff">127</span>.0.0.1:443
+</span><span style="display:block;width:100%;background-color:#3c3d38">    LocalForward <span style="color:#ae81ff">9906</span> 127.0.0.1:443
 </span>
 Host monitoring
 <span style="display:block;width:100%;background-color:#3c3d38">    ProxyCommand ssh cloud@160.46.188.153 -W %h:%p
-</span>    HostName <span style="color:#ae81ff">10</span>.135.0.20
+</span>    HostName 10.135.0.20
     User cloud
     IdentityFile ~/.ssh/id_rsa
     ForwardAgent yes</code></pre></td></tr></table>
 </div>
 </div>
-
 <ul>
-<li>line 6: we&rsquo;d like to use X11 forwarding (using GUI-based tools executed on the remote machine)</li>
-<li>line 7: we activated <a href="https://dev.to/levivm/how-to-use-ssh-and-ssh-agent-forwarding-more-secure-ssh-2c32" target="_blank">agent forwarding</a> so when connected to <code>gateway</code> we can re-use our (local) SSH-key (without placing it on the remote machine) in order to i.e. do further SSH-hops or pull a GIT repo (via SSH).</li>
-
-<li><p>line 8: For the <code>gateway</code>-host we created a local port-forwarding so we can access the HTTPS-port on that machine via our local port <code>9906</code>.</p></li>
-
-<li><p>line 11: In those cases where we have to go through a SSH-gateway (a.k.a. jumphost) we would have to make two SSH-hops in a row (first, SSH into the machine that has a public IP - then SSH further into the actual destination machine using its internal IP). <br/>
-In order to do this in one go we&rsquo;ve setup a <code>ProxyCommand</code> - so by issuing <code>ssh monitoring</code> we directly do two hops and end up at the destination host.</p></li>
+<li>
+<p>line 6: we&rsquo;d like to use X11 forwarding (using GUI-based tools executed on the remote machine)</p>
+</li>
+<li>
+<p>line 7: we activated <a href="https://dev.to/levivm/how-to-use-ssh-and-ssh-agent-forwarding-more-secure-ssh-2c32">agent forwarding</a> so when connected to <code>gateway</code> we can re-use our (local) SSH-key (without placing it on the remote machine) in order to i.e. do further SSH-hops or pull a GIT repo (via SSH).</p>
+</li>
+<li>
+<p>line 8: For the <code>gateway</code>-host we created a local port-forwarding so we can access the HTTPS-port on that machine via our local port <code>9906</code>.</p>
+</li>
+<li>
+<p>line 11: In those cases where we have to go through a SSH-gateway (a.k.a. jumphost) we would have to make two SSH-hops in a row (first, SSH into the machine that has a public IP - then SSH further into the actual destination machine using its internal IP). <!-- raw HTML omitted -->
+In order to do this in one go we&rsquo;ve setup a <code>ProxyCommand</code> - so by issuing <code>ssh monitoring</code> we directly do two hops and end up at the destination host.</p>
+</li>
 </ul>
 </div>
 

@@ -13,7 +13,7 @@ In other words, let the test results act as a quality gate for either promoting 
 <meta property='og:site_name' content='Personal PasteBin'>
 <meta property='og:type' content='article'><meta property='article:section' content='posts'><meta property='article:tag' content='devops'><meta property='article:tag' content='taurus'><meta property='article:tag' content='jmeter'><meta property='article:tag' content='performance'><meta property='article:tag' content='loadtesting'><meta property='article:tag' content='testing'><meta property='article:tag' content='jenkins'><meta property='article:tag' content='ci/cd'><meta property='article:tag' content='pipelines'><meta property='article:published_time' content='2019-08-20T00:00:00&#43;02:00'/><meta property='article:modified_time' content='2019-08-14T10:41:28&#43;02:00'/><meta name='twitter:card' content='summary'>
 
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.63.2" />
 
   <title>Using load-tests as quality gate in Jenkins pipelines • Personal PasteBin</title>
   <link rel='canonical' href='https://schoeffm.github.io/posts/integration-of-loadtests-within-jenkins-pipelines/'>
@@ -75,13 +75,15 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/base64/' style='font-size:1em'>base64</a>
       </li><li>
+        <a href='/tags/bash/' style='font-size:1em'>bash</a>
+      </li><li>
         <a href='/tags/cheatsheet/' style='font-size:1.2em'>cheatsheet</a>
       </li><li>
         <a href='/tags/chunk/' style='font-size:1em'>chunk</a>
       </li><li>
         <a href='/tags/ci/cd/' style='font-size:1em'>ci/cd</a>
       </li><li>
-        <a href='/tags/cli/' style='font-size:1.6em'>cli</a>
+        <a href='/tags/cli/' style='font-size:1.8em'>cli</a>
       </li><li>
         <a href='/tags/configuration/' style='font-size:1em'>configuration</a>
       </li><li>
@@ -109,6 +111,10 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/jmeter/' style='font-size:1em'>jmeter</a>
       </li><li>
+        <a href='/tags/jq/' style='font-size:1em'>jq</a>
+      </li><li>
+        <a href='/tags/json/' style='font-size:1em'>json</a>
+      </li><li>
         <a href='/tags/kubernetes/' style='font-size:1em'>kubernetes</a>
       </li><li>
         <a href='/tags/linux/' style='font-size:1.2em'>linux</a>
@@ -135,6 +141,8 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/rest/' style='font-size:1em'>rest</a>
       </li><li>
+        <a href='/tags/scripting/' style='font-size:1em'>scripting</a>
+      </li><li>
         <a href='/tags/security/' style='font-size:1em'>security</a>
       </li><li>
         <a href='/tags/ssh/' style='font-size:1em'>ssh</a>
@@ -147,7 +155,7 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/testing/' style='font-size:1.2em'>testing</a>
       </li><li>
-        <a href='/tags/tools/' style='font-size:1.2em'>tools</a>
+        <a href='/tags/tools/' style='font-size:1.4em'>tools</a>
       </li><li>
         <a href='/tags/users/' style='font-size:1em'>users</a>
       </li><li>
@@ -254,46 +262,33 @@ gtag('config', 'UA-148436067-1');
   
 
   <div class='container entry-content'>
-  <p>Over years <a href="https://jmeter.apache.org/" target="_blank">JMeter</a> has always been a valuable tool in my box when dealing with performance testing. But when we&rsquo;ve integrated those tests with our CI/CD-pipeline we always had hard times to control the pipeline outcome based on the performance results. <br/>
+  <p>Over years <a href="https://jmeter.apache.org/">JMeter</a> has always been a valuable tool in my box when dealing with performance testing. But when we&rsquo;ve integrated those tests with our CI/CD-pipeline we always had hard times to control the pipeline outcome based on the performance results. <!-- raw HTML omitted -->
 In other words, let the test results act as a quality gate for either promoting the build-artfiact along the pipeline or not.</p>
-
 <h4 id="prevent-jenkins-lock-in">Prevent jenkins lock-in</h4>
-
-<p>When working with <a href="https://jmeter.apache.org/" target="_blank">JMeter</a> there are a bunch <a href="https://blog.codecentric.de/en/2014/01/automating-jmeter-tests-maven-jenkins/" target="_blank">of good tutorials</a> out there which show you how to integrate <a href="http://jmeter.lazerycode.com/" target="_blank">jmeter test-suites with maven</a> and subsequently leaverage that integration also <a href="https://blog.codecentric.de/en/2014/01/automating-jmeter-tests-maven-jenkins/" target="_blank">within jenkins</a>. I really liked that approach since it just uses the developers tools also in jenkins - easy to grasp and to try for yourself.<br/>
-There are <a href="https://wiki.jenkins.io/display/JENKINS/How+to+run+JMeter+with+Jenkins" target="_blank">other solutions</a> as well but since most of them rely on <a href="https://www.cloudbees.com/blog/how-integrate-jmeter-jenkins" target="_blank">jenkins plugins</a> they&rsquo;d introduce an undesired jenkins dependency (bearing the risk of a de facto jenkins lock-in).</p>
-
+<p>When working with <a href="https://jmeter.apache.org/">JMeter</a> there are a bunch <a href="https://blog.codecentric.de/en/2014/01/automating-jmeter-tests-maven-jenkins/">of good tutorials</a> out there which show you how to integrate <a href="http://jmeter.lazerycode.com/">jmeter test-suites with maven</a> and subsequently leaverage that integration also <a href="https://blog.codecentric.de/en/2014/01/automating-jmeter-tests-maven-jenkins/">within jenkins</a>. I really liked that approach since it just uses the developers tools also in jenkins - easy to grasp and to try for yourself.<!-- raw HTML omitted -->
+There are <a href="https://wiki.jenkins.io/display/JENKINS/How+to+run+JMeter+with+Jenkins">other solutions</a> as well but since most of them rely on <a href="https://www.cloudbees.com/blog/how-integrate-jmeter-jenkins">jenkins plugins</a> they&rsquo;d introduce an undesired jenkins dependency (bearing the risk of a de facto jenkins lock-in).</p>
 <p><strong>Rule of thumb</strong>: <em>Always (re-)use the developers tooling within CI/CD as well.</em></p>
-
 <h4 id="measuring-is-not-enough">Measuring is not enough</h4>
-
-<p>One downside of the <a href="http://jmeter.lazerycode.com/" target="_blank">jmeter-maven approach</a> although was that there is no easy solution to break the build based on predefine thresholds (like it is possible with the <a href="https://www.cloudbees.com/blog/how-integrate-jmeter-jenkins" target="_blank">jenkins performance plugin</a>).<br/>
-Although it provides valuable information, just charting the results (using either another <a href="https://github.com/codecentric/jmeter-graph-maven-plugin" target="_blank">maven plugin</a> or a jenkins-plugin) is simply not enough since you would have to actively check regularly for regression - a tedious task which would soon be neglected. A better solution would be if jenkins could recognize a performance degression on its own and just act accordingly (by breaking the build).</p>
-
-<p><strong>Rule of thumb</strong>: <em>Apply &ldquo;<a href="https://en.wikipedia.org/w/index.php?title=Hollywood_principle" target="_blank">Don&rsquo;t call us - we call you</a>&rdquo; also within jenkins by breaking the build.</em></p>
-
+<p>One downside of the <a href="http://jmeter.lazerycode.com/">jmeter-maven approach</a> although was that there is no easy solution to break the build based on predefine thresholds (like it is possible with the <a href="https://www.cloudbees.com/blog/how-integrate-jmeter-jenkins">jenkins performance plugin</a>).<!-- raw HTML omitted -->
+Although it provides valuable information, just charting the results (using either another <a href="https://github.com/codecentric/jmeter-graph-maven-plugin">maven plugin</a> or a jenkins-plugin) is simply not enough since you would have to actively check regularly for regression - a tedious task which would soon be neglected. A better solution would be if jenkins could recognize a performance degression on its own and just act accordingly (by breaking the build).</p>
+<p><strong>Rule of thumb</strong>: <em>Apply &ldquo;<a href="https://en.wikipedia.org/w/index.php?title=Hollywood_principle">Don&rsquo;t call us - we call you</a>&rdquo; also within jenkins by breaking the build.</em></p>
 <h4 id="wrapping-taurus-around-jmeter">Wrapping Taurus around JMeter</h4>
-
-<p>While reading about <a href="https://jmeter.apache.org/" target="_blank">JMeter</a> I finally stumbled upon <a href="http://gettaurus.org/" target="_blank">Taurus</a> which is, according to the webpage, an automation-friendly framework for continuous testing.<br/>
-The reason why I started to have a closer look at Taurus was its ability to <em>easily</em> define <a href="http://gettaurus.org/docs/PassFail/" target="_blank">pass/fail criteria</a> for tests - like in this example:</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml">reporting:
-- module: passfail
-  criteria:
+<p>While reading about <a href="https://jmeter.apache.org/">JMeter</a> I finally stumbled upon <a href="http://gettaurus.org/">Taurus</a> which is, according to the webpage, an automation-friendly framework for continuous testing.<!-- raw HTML omitted -->
+The reason why I started to have a closer look at Taurus was its ability to <em>easily</em> define <a href="http://gettaurus.org/docs/PassFail/">pass/fail criteria</a> for tests - like in this example:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#66d9ef">reporting</span>:
+- <span style="color:#66d9ef">module</span>: passfail
+  <span style="color:#66d9ef">criteria</span>:
   - avg-rt of IndexPage&gt;150ms for 10s, stop as failed
   - fail of CheckoutPage&gt;<span style="color:#ae81ff">50</span>% for 10s, stop as failed</code></pre></div>
-
 <p>So in case the average response time of the <em>IndexPage</em> test is ≥10 seconds for more than 150 milliseconds the test will be aborted.</p>
-
 <h5 id="loadtesting-setup">Loadtesting Setup</h5>
-
-<p>Its CLI-based nature makes Taurus a perfect fit for Jenkins pipeline integration.<br/>
-To kill two birds with one stone we created a Docker(-Agent) Image to containerize Taurus (a starting-point for such an <a href="https://hub.docker.com/r/blazemeter/taurus" target="_blank">image is already provided by blazemeter</a>). That image can then be used <a href="https://jenkins.io/doc/pipeline/steps/docker-workflow/#withdockercontainer-run-build-steps-inside-a-docker-container" target="_blank">from within Jenkins</a> as well as locally on each dev machine. A corresponding pipeline-snippet might look like this:</p>
-
+<p>Its CLI-based nature makes Taurus a perfect fit for Jenkins pipeline integration.<!-- raw HTML omitted -->
+To kill two birds with one stone we created a Docker(-Agent) Image to containerize Taurus (a starting-point for such an <a href="https://hub.docker.com/r/blazemeter/taurus">image is already provided by blazemeter</a>). That image can then be used <a href="https://jenkins.io/doc/pipeline/steps/docker-workflow/#withdockercontainer-run-build-steps-inside-a-docker-container">from within Jenkins</a> as well as locally on each dev machine. A corresponding pipeline-snippet might look like this:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-groovy" data-lang="groovy">withDockerContainer<span style="color:#f92672">(</span>image: <span style="color:#e6db74">&#39;jenkins/taurus&#39;</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
     String propPrefix <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;modules.jmeter.properties&#34;</span>
-    withCredentials<span style="color:#f92672">([</span>usernamePassword<span style="color:#f92672">(</span>credentialsId: <span style="color:#e6db74">&#39;loadtest-user&#39;</span><span style="color:#f92672">,</span> 
+    withCredentials<span style="color:#f92672">(</span><span style="color:#f92672">[</span>usernamePassword<span style="color:#f92672">(</span>credentialsId: <span style="color:#e6db74">&#39;loadtest-user&#39;</span><span style="color:#f92672">,</span> 
                                       passwordVariable: <span style="color:#e6db74">&#39;apipass&#39;</span><span style="color:#f92672">,</span> 
-                                      usernameVariable: <span style="color:#e6db74">&#39;apiuser&#39;</span><span style="color:#f92672">)])</span> <span style="color:#f92672">{</span>
+                                      usernameVariable: <span style="color:#e6db74">&#39;apiuser&#39;</span><span style="color:#f92672">)</span><span style="color:#f92672">]</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
         sh  <span style="color:#e6db74">&#34;bzt -o ${propPrefix}.api_user=${apiuser}&#34;</span> <span style="color:#f92672">+</span>
             <span style="color:#e6db74">&#34;    -o ${propPrefix}.api_password=${apipass}&#34;</span> <span style="color:#f92672">+</span>
             <span style="color:#e6db74">&#34;    -o ${propPrefix}.api_users=10&#34;</span> <span style="color:#f92672">+</span>
@@ -302,45 +297,39 @@ To kill two birds with one stone we created a Docker(-Agent) Image to containeri
             <span style="color:#e6db74">&#34; path/to/taurus.yml&#34;</span>
     <span style="color:#f92672">}</span>
 <span style="color:#f92672">}</span></code></pre></div>
-
 <p>As you can see, Taurus allows us to pass through prop-values to the underlying, parametrized JMeter script - this can be used to externalize credentials but also to easily tweak the actual test-setup (i.e. adjust the number of concurrent users etc.).</p>
-
 <p>When executing Taurus you&rsquo;ll have to reference the respective test-configuration - in our example <code>path/to/taurus.yml</code>. Since we already had a JMeter script available we refrained using Taurus&rsquo; YAML-syntax to define our suite but just referenced the already existing JMX-script.</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-yaml" data-lang="yaml"><span style="color:#75715e"># lists the scenarios to be executed</span>
-execution:
-  - scenario: mainapi
+<span style="color:#66d9ef">execution</span>:
+  - <span style="color:#66d9ef">scenario</span>: mainapi
 
 <span style="color:#75715e"># for props that mustn&#39;t/don&#39;t change </span>
-modules:
-  jmeter:
-    properties:
-      api_port: <span style="color:#e6db74">&#39;8084&#39;</span>
-      api_schema: <span style="color:#e6db74">&#39;https&#39;</span>
+<span style="color:#66d9ef">modules</span>:
+  <span style="color:#66d9ef">jmeter</span>:
+    <span style="color:#66d9ef">properties</span>:
+      <span style="color:#66d9ef">api_port</span>: <span style="color:#e6db74">&#39;8084&#39;</span>
+      <span style="color:#66d9ef">api_schema</span>: <span style="color:#e6db74">&#39;https&#39;</span>
 
 <span style="color:#75715e"># defines each scenario - the actual test-suite is defined in </span>
 <span style="color:#75715e"># &#39;api_access.jmx&#39; (an ordinary JMeter script)</span>
 <span style="color:#75715e"># The names referenced in the criteria-section (i.e. Read All </span>
 <span style="color:#75715e"># Customer) are samples defined in api_access.jmx</span>
-scenarios:
-  mainapi:
-    script: api_access.jmx
-    criteria:
+<span style="color:#66d9ef">scenarios</span>:
+  <span style="color:#66d9ef">mainapi</span>:
+    <span style="color:#66d9ef">script</span>: api_access.jmx
+    <span style="color:#66d9ef">criteria</span>:
       - avg-rt of Read All Customer&gt;300ms for 10s, stop as failed
       - avg-rt of Read specific Customer Profile&gt;150ms for 10s, stop as failed
       
-reporting:
-  - module: passfail        <span style="color:#75715e"># let the test fail in case we don&#39;t meed the criteria</span>
-  - module: junit-xml       <span style="color:#75715e"># will write a junit-report (which can be consumed by Jenkins)</span>
-    filename: ./junit-performance.xml
-    data-source: pass-fail
-  - module: final-stats     <span style="color:#75715e"># will write a performance-report (which can be consumed by Jenkins)</span>
-    dump-xml: ./jenkins-performance.xml</code></pre></div>
-
+<span style="color:#66d9ef">reporting</span>:
+  - <span style="color:#66d9ef">module</span>: passfail        <span style="color:#75715e"># let the test fail in case we don&#39;t meed the criteria</span>
+  - <span style="color:#66d9ef">module</span>: junit-xml       <span style="color:#75715e"># will write a junit-report (which can be consumed by Jenkins)</span>
+    <span style="color:#66d9ef">filename</span>: ./junit-performance.xml
+    <span style="color:#66d9ef">data-source</span>: pass-fail
+  - <span style="color:#66d9ef">module</span>: final-stats     <span style="color:#75715e"># will write a performance-report (which can be consumed by Jenkins)</span>
+    <span style="color:#66d9ef">dump-xml</span>: ./jenkins-performance.xml</code></pre></div>
 <p>In the reporting section we also defined the creation of a bunch of reports that can be consumed by Jenkins as well.</p>
-
 <p>With that setup we got everything we wanted:</p>
-
 <ul>
 <li>no lock-in - the whole tool-chain can be used by the pipeline like it is used locally (through parametrization you can change whatever aspect you&rsquo;d like).</li>
 <li>fast feedback - as soon as a performance degression gets introduced, Taurus will break the build and Jenkins will let you know</li>

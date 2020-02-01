@@ -3,6 +3,56 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://schoeffm.github.io/tags/bash/</loc>
+    <lastmod>2020-01-29T15:07:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/cli/</loc>
+    <lastmod>2020-01-29T15:07:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/jq/</loc>
+    <lastmod>2020-01-29T15:07:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/posts/jq-by-example/</loc>
+    <lastmod>2020-01-29T15:07:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/json/</loc>
+    <lastmod>2020-01-29T15:07:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/</loc>
+    <lastmod>2020-01-29T15:07:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/posts/</loc>
+    <lastmod>2020-01-29T15:07:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/scripting/</loc>
+    <lastmod>2020-01-29T15:07:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/</loc>
+    <lastmod>2020-01-29T15:07:59+01:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://schoeffm.github.io/tags/tools/</loc>
+    <lastmod>2020-01-29T15:07:59+01:00</lastmod>
+  </url>
+  
+  <url>
     <loc>https://schoeffm.github.io/posts/access-host-from-inside-a-docker-container/</loc>
     <lastmod>2020-01-01T12:00:56+01:00</lastmod>
   </url>
@@ -19,21 +69,6 @@
   
   <url>
     <loc>https://schoeffm.github.io/tags/docker4mac/</loc>
-    <lastmod>2020-01-01T12:00:56+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/</loc>
-    <lastmod>2020-01-01T12:00:56+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/posts/</loc>
-    <lastmod>2020-01-01T12:00:56+01:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/</loc>
     <lastmod>2020-01-01T12:00:56+01:00</lastmod>
   </url>
   
@@ -63,11 +98,6 @@
   </url>
   
   <url>
-    <loc>https://schoeffm.github.io/tags/cli/</loc>
-    <lastmod>2019-09-19T16:27:21+02:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://schoeffm.github.io/tags/devops/</loc>
     <lastmod>2019-09-19T16:27:21+02:00</lastmod>
   </url>
@@ -89,11 +119,6 @@
   
   <url>
     <loc>https://schoeffm.github.io/tags/proxy/</loc>
-    <lastmod>2019-09-19T16:27:21+02:00</lastmod>
-  </url>
-  
-  <url>
-    <loc>https://schoeffm.github.io/tags/tools/</loc>
     <lastmod>2019-09-19T16:27:21+02:00</lastmod>
   </url>
   

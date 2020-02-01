@@ -11,7 +11,7 @@
 <meta property='og:site_name' content='Personal PasteBin'>
 <meta property='og:type' content='article'><meta property='article:section' content='posts'><meta property='article:tag' content='web-components'><meta property='article:tag' content='fetch'><meta property='article:tag' content='chunk'><meta property='article:tag' content='streaming'><meta property='article:published_time' content='2019-07-28T12:18:59&#43;02:00'/><meta property='article:modified_time' content='2019-07-28T12:18:59&#43;02:00'/><meta name='twitter:card' content='summary'>
 
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.63.2" />
 
   <title>Response streaming between JAX-RS and Web-Components (Part 2) • Personal PasteBin</title>
   <link rel='canonical' href='https://schoeffm.github.io/posts/response-streaming-between-jaxrs-and-webcomponents-part2/'>
@@ -73,13 +73,15 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/base64/' style='font-size:1em'>base64</a>
       </li><li>
+        <a href='/tags/bash/' style='font-size:1em'>bash</a>
+      </li><li>
         <a href='/tags/cheatsheet/' style='font-size:1.2em'>cheatsheet</a>
       </li><li>
         <a href='/tags/chunk/' style='font-size:1em'>chunk</a>
       </li><li>
         <a href='/tags/ci/cd/' style='font-size:1em'>ci/cd</a>
       </li><li>
-        <a href='/tags/cli/' style='font-size:1.6em'>cli</a>
+        <a href='/tags/cli/' style='font-size:1.8em'>cli</a>
       </li><li>
         <a href='/tags/configuration/' style='font-size:1em'>configuration</a>
       </li><li>
@@ -107,6 +109,10 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/jmeter/' style='font-size:1em'>jmeter</a>
       </li><li>
+        <a href='/tags/jq/' style='font-size:1em'>jq</a>
+      </li><li>
+        <a href='/tags/json/' style='font-size:1em'>json</a>
+      </li><li>
         <a href='/tags/kubernetes/' style='font-size:1em'>kubernetes</a>
       </li><li>
         <a href='/tags/linux/' style='font-size:1.2em'>linux</a>
@@ -133,6 +139,8 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/rest/' style='font-size:1em'>rest</a>
       </li><li>
+        <a href='/tags/scripting/' style='font-size:1em'>scripting</a>
+      </li><li>
         <a href='/tags/security/' style='font-size:1em'>security</a>
       </li><li>
         <a href='/tags/ssh/' style='font-size:1em'>ssh</a>
@@ -145,7 +153,7 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/testing/' style='font-size:1.2em'>testing</a>
       </li><li>
-        <a href='/tags/tools/' style='font-size:1.2em'>tools</a>
+        <a href='/tags/tools/' style='font-size:1.4em'>tools</a>
       </li><li>
         <a href='/tags/users/' style='font-size:1em'>users</a>
       </li><li>
@@ -252,15 +260,11 @@ gtag('config', 'UA-148436067-1');
   
 
   <div class='container entry-content'>
-  <p>In <a href="/posts/response-streaming-between-jaxrs-and-webcomponents-part1/" target="_blank">part one</a> we had a look at a JAX-RS endpoint that streams its content to the requesting client. Now I&rsquo;d like to show how the <code>fetch</code>-API can be used to consume that streamed content in a web component.</p>
-
-<p>When talking about <em>streamed content</em> here we&rsquo;re actually refering to <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Transfer-Encoding" target="_blank">chunked transfere encoding</a> where the complete content of a response is spread accross several transmissions. <br/>
-In order to consume our streaming endpoint we&rsquo;ll use the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" target="_blank">fetch-API</a> - a more flexible and powerful approach to retrieve resources over the network than the former used <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest" target="_blank">XMLHttpRequest</a>.</p>
-
-<p><strong>Notice:</strong> In order to use <code>fetch</code> in our web-component we have to rely on a feature called <em>Streaming response body</em> which is marked as <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API#Browser_compatibility" target="_blank">experimental at the time of this writing</a> (although supported by all major browsers).</p>
-
+  <p>In <a href="/posts/response-streaming-between-jaxrs-and-webcomponents-part1/">part one</a> we had a look at a JAX-RS endpoint that streams its content to the requesting client. Now I&rsquo;d like to show how the <code>fetch</code>-API can be used to consume that streamed content in a web component.</p>
+<p>When talking about <em>streamed content</em> here we&rsquo;re actually refering to <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Transfer-Encoding">chunked transfere encoding</a> where the complete content of a response is spread accross several transmissions. <!-- raw HTML omitted -->
+In order to consume our streaming endpoint we&rsquo;ll use the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch-API</a> - a more flexible and powerful approach to retrieve resources over the network than the former used <a href="https://developer.mozilla.org/en-US/docs/Web/API/XMLHttpRequest">XMLHttpRequest</a>.</p>
+<p><strong>Notice:</strong> In order to use <code>fetch</code> in our web-component we have to rely on a feature called <em>Streaming response body</em> which is marked as <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API#Browser_compatibility">experimental at the time of this writing</a> (although supported by all major browsers).</p>
 <p>Let&rsquo;s start with a simple <code>index.html</code> that loads our <code>app.js</code>-module and uses the <code>sfm-stream-output</code>-component defined by it.</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!DOCTYPE html&gt;</span>
 &lt;<span style="color:#f92672">html</span> <span style="color:#a6e22e">lang</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span>&gt;
 &lt;<span style="color:#f92672">head</span>&gt;
@@ -272,9 +276,7 @@ In order to consume our streaming endpoint we&rsquo;ll use the <a href="https://
     &lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">type</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;module&#34;</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;app.js&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
 &lt;/<span style="color:#f92672">body</span>&gt;
 &lt;/<span style="color:#f92672">html</span>&gt;</code></pre></div>
-
 <p>For the actual component let&rsquo;s start with the followin&rsquo; skeleton:</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SfmStreamOutput</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">HTMLElement</span> {
 
     <span style="color:#a6e22e">constructor</span>() {
@@ -291,16 +293,13 @@ In order to consume our streaming endpoint we&rsquo;ll use the <a href="https://
 
     <span style="color:#a6e22e">render</span>() {
         <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">root</span>.<span style="color:#a6e22e">innerHTML</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">elements</span>
-            .<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">e</span> =&gt; <span style="color:#e6db74">`&lt;div&gt;</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">index</span><span style="color:#e6db74">}</span><span style="color:#e6db74">. -- </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">content</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&lt;/div&gt;`</span>)
+            .<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">e</span> =&gt; <span style="color:#e6db74">`</span><span style="color:#e6db74">&lt;div&gt;</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">index</span><span style="color:#e6db74">}</span><span style="color:#e6db74">. -- </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">e</span>.<span style="color:#a6e22e">content</span><span style="color:#e6db74">}</span><span style="color:#e6db74">&lt;/div&gt;</span><span style="color:#e6db74">`</span>)
             .<span style="color:#a6e22e">join</span>(<span style="color:#e6db74">&#39;&#39;</span>)
     }
 }    
 </code></pre></div>
-
 <p>Nothing fancy so far - the purpose of the component is to render a <code>&lt;div&gt;</code>-tag for each entry in the components <code>elements</code>-array. Right now this array is empty - so let&rsquo;s fill it with the response-data from our streaming endpoint using <code>fetch</code>.</p>
-
-<p>A call to <code>fetch</code> will return a <code>Promise</code> which resolves to the <code>Response</code> of that request. Now, it&rsquo;s actually the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Body" target="_blank">Body mixin</a> which provides a bunch of methods to read the responses content. Most of the time you&rsquo;ll see usages of methods like <code>response.text()</code> or <code>response.json()</code> which actually consume the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Streams_API/Concepts" target="_blank">underlying stream</a> for you and read it to completion. But you can also access the stream and consume it yourself by using <code>response.body</code>:</p>
-
+<p>A call to <code>fetch</code> will return a <code>Promise</code> which resolves to the <code>Response</code> of that request. Now, it&rsquo;s actually the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Body">Body mixin</a> which provides a bunch of methods to read the responses content. Most of the time you&rsquo;ll see usages of methods like <code>response.text()</code> or <code>response.json()</code> which actually consume the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Streams_API/Concepts">underlying stream</a> for you and read it to completion. But you can also access the stream and consume it yourself by using <code>response.body</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#39;/streamoutput/api/resource/stream&#39;</span>)  <span style="color:#75715e">// call the endpoint
 </span><span style="color:#75715e"></span>    .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">response</span> =&gt; <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">body</span>)        <span style="color:#75715e">// get the stream 
 </span><span style="color:#75715e"></span>    .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">body</span> =&gt; { 
@@ -309,16 +308,12 @@ In order to consume our streaming endpoint we&rsquo;ll use the <a href="https://
             .<span style="color:#a6e22e">then</span>(({<span style="color:#a6e22e">done</span>, <span style="color:#a6e22e">value</span>}) =&gt; <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">done</span>, <span style="color:#a6e22e">value</span>));
     });                 
 </code></pre></div>
-
 <p>When executing the above code you&rsquo;ll notice several things:</p>
-
 <ol>
 <li>your <code>console.log</code> will be called only once &hellip; so apparently you&rsquo;re not consuming the complete response</li>
-<li>the value is of type <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array" target="_blank">Uint8Array</a> &hellip; so a binary representation you&rsquo;ll have to decode before it can be used</li>
+<li>the value is of type <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array">Uint8Array</a> &hellip; so a binary representation you&rsquo;ll have to decode before it can be used</li>
 </ol>
-
 <p>Let&rsquo;s fix the decoding first:</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">fetch</span>(<span style="color:#e6db74">&#39;/streamoutput/api/resource/stream&#39;</span>)  <span style="color:#75715e">// call the endpoint
 </span><span style="color:#75715e"></span>    .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">response</span> =&gt; <span style="color:#a6e22e">response</span>.<span style="color:#a6e22e">body</span>)        <span style="color:#75715e">// get the stream 
 </span><span style="color:#75715e"></span>    .<span style="color:#a6e22e">then</span>(<span style="color:#a6e22e">body</span> =&gt; { 
@@ -327,27 +322,21 @@ In order to consume our streaming endpoint we&rsquo;ll use the <a href="https://
             <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">done</span>, <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">TextDecoder</span>(<span style="color:#e6db74">&#39;utf-8&#39;</span>).<span style="color:#a6e22e">decode</span>(<span style="color:#a6e22e">value</span>)));
     });                 
 </code></pre></div>
-
 <p>We still got only one call to <code>console.log</code> - but this time we can actually see the content of our first chunk</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript">...
 {<span style="color:#e6db74">&#34;index&#34;</span><span style="color:#f92672">:</span><span style="color:#ae81ff">36</span>,<span style="color:#e6db74">&#34;content&#34;</span><span style="color:#f92672">:</span><span style="color:#e6db74">&#34;Some random text which actually can be generated in order to be really random&#34;</span>}
 {<span style="color:#e6db74">&#34;index&#34;</span><span style="color:#f92672">:</span><span style="color:#ae81ff">37</span>,<span style="color:#e6db74">&#34;content&#34;</span><span style="color:#f92672">:</span><span style="color:#960050;background-color:#1e0010">&#34;</span><span style="color:#a6e22e">Some</span> <span style="color:#a6e22e">random</span> <span style="color:#a6e22e">text</span> <span style="color:#a6e22e">which</span> <span style="color:#a6e22e">a</span>
 </code></pre></div>
-
 <p>which reveals that it get&rsquo;s tricky to parse that chunk since it was split arbitrarily.</p>
-
 <p>But now we know at least everything we need in order to process the response.</p>
-
 <ol>
-<li>make sure we call <code>read()</code> several times to consume all chunks of the stream (done in line <tt>17</tt> and <tt>28</tt>).</li>
-<li>split each junk at our newline-delimiter to get parsable portions (so a valid JSON-object - done via the regex in line <tt>8</tt>)</li>
-<li>buffer incomplete, trailing lines and prepend &lsquo;em to the next chunk (in order to yield a valid JSON again - line <tt>13</tt> &lsquo;til <tt>22</tt>).</li>
+<li>make sure we call <code>read()</code> several times to consume all chunks of the stream (done in line <!-- raw HTML omitted -->17<!-- raw HTML omitted --> and <!-- raw HTML omitted -->28<!-- raw HTML omitted -->).</li>
+<li>split each junk at our newline-delimiter to get parsable portions (so a valid JSON-object - done via the regex in line <!-- raw HTML omitted -->8<!-- raw HTML omitted -->)</li>
+<li>buffer incomplete, trailing lines and prepend &lsquo;em to the next chunk (in order to yield a valid JSON again - line <!-- raw HTML omitted -->13<!-- raw HTML omitted --> &lsquo;til <!-- raw HTML omitted -->22<!-- raw HTML omitted -->).</li>
 </ol>
-
 <div class="highlight"><div style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">
 <table style="border-spacing:0;padding:0;margin:0;border:0;width:auto;overflow:auto;display:block;"><tr><td style="vertical-align:top;padding:0;margin:0;border:0;">
-<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
+<pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 1
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 2
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 3
 </span><span style="margin-right:0.4em;padding:0 0.4em 0 0.4em;color:#7f7f7f"> 4
@@ -410,19 +399,9 @@ In order to consume our streaming endpoint we&rsquo;ll use the <a href="https://
 </code></pre></td></tr></table>
 </div>
 </div>
-
-<p>When placed in the <code>connectedCallback</code>-method of our web-component it&rsquo;ll issue the request when it gets added to the DOM and it&rsquo;ll render each chunk of the response as soon as it was received.<br/>
-You can find all sources in <a href="https://github.com/schoeffm/jax-rs-streamingoutput" target="_blank">this repository</a> - clone it, compile and run it using the <code>buildAndRun.sh</code>-script (prerequisite is <code>maven</code> and <code>docker</code>) and open <code>http://localhost:8080/streamoutput/index.html</code> in Chrome where you should see a steadily growin UI.</p>
-
-<video width="590" height="622" controls preload="none" poster="/posts/streaming/stream-processing-using-fetch.png">
-    <!-- MP4 must be first for iPad! -->
-    <source src="/posts/streaming/stream-processing-using-fetch.mp4" type="video/mp4" /><!-- WebKit video    -->
-    <!--source src="__VIDEO__.webm" type="video/webm" /--> <!-- Chrome / Newest versions of Firefox and Opera -->
-    <!--source src="__VIDEO__.OGV" type="video/ogg" /--> <!-- Firefox / Opera -->
-    <!-- fallback image. note the title field below, put the title of the video there -->
-    <img src="/posts/streaming/stream-processing-using-fetch.png" width="590" height="622" title="No video playback capabilities, please download the video below" /-->
-    </object>
-</video>
+<p>When placed in the <code>connectedCallback</code>-method of our web-component it&rsquo;ll issue the request when it gets added to the DOM and it&rsquo;ll render each chunk of the response as soon as it was received.<!-- raw HTML omitted -->
+You can find all sources in <a href="https://github.com/schoeffm/jax-rs-streamingoutput">this repository</a> - clone it, compile and run it using the <code>buildAndRun.sh</code>-script (prerequisite is <code>maven</code> and <code>docker</code>) and open <code>http://localhost:8080/streamoutput/index.html</code> in Chrome where you should see a steadily growin UI.</p>
+<!-- raw HTML omitted -->
 </div>
 
   

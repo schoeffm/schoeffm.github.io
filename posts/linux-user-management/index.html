@@ -13,7 +13,7 @@ Handling users # adds a new user called &#39;schoeffm&#39; useradd -m -s /bin/zs
 <meta property='og:site_name' content='Personal PasteBin'>
 <meta property='og:type' content='article'><meta property='article:section' content='posts'><meta property='article:tag' content='cheatsheet'><meta property='article:tag' content='users'><meta property='article:tag' content='linux'><meta property='article:tag' content='devops'><meta property='article:published_time' content='2019-08-15T00:00:00&#43;02:00'/><meta property='article:modified_time' content='2019-08-10T10:40:33&#43;02:00'/><meta name='twitter:card' content='summary'>
 
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.63.2" />
 
   <title>Linux User Management • Personal PasteBin</title>
   <link rel='canonical' href='https://schoeffm.github.io/posts/linux-user-management/'>
@@ -75,13 +75,15 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/base64/' style='font-size:1em'>base64</a>
       </li><li>
+        <a href='/tags/bash/' style='font-size:1em'>bash</a>
+      </li><li>
         <a href='/tags/cheatsheet/' style='font-size:1.2em'>cheatsheet</a>
       </li><li>
         <a href='/tags/chunk/' style='font-size:1em'>chunk</a>
       </li><li>
         <a href='/tags/ci/cd/' style='font-size:1em'>ci/cd</a>
       </li><li>
-        <a href='/tags/cli/' style='font-size:1.6em'>cli</a>
+        <a href='/tags/cli/' style='font-size:1.8em'>cli</a>
       </li><li>
         <a href='/tags/configuration/' style='font-size:1em'>configuration</a>
       </li><li>
@@ -109,6 +111,10 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/jmeter/' style='font-size:1em'>jmeter</a>
       </li><li>
+        <a href='/tags/jq/' style='font-size:1em'>jq</a>
+      </li><li>
+        <a href='/tags/json/' style='font-size:1em'>json</a>
+      </li><li>
         <a href='/tags/kubernetes/' style='font-size:1em'>kubernetes</a>
       </li><li>
         <a href='/tags/linux/' style='font-size:1.2em'>linux</a>
@@ -135,6 +141,8 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/rest/' style='font-size:1em'>rest</a>
       </li><li>
+        <a href='/tags/scripting/' style='font-size:1em'>scripting</a>
+      </li><li>
         <a href='/tags/security/' style='font-size:1em'>security</a>
       </li><li>
         <a href='/tags/ssh/' style='font-size:1em'>ssh</a>
@@ -147,7 +155,7 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/testing/' style='font-size:1.2em'>testing</a>
       </li><li>
-        <a href='/tags/tools/' style='font-size:1.2em'>tools</a>
+        <a href='/tags/tools/' style='font-size:1.4em'>tools</a>
       </li><li>
         <a href='/tags/users/' style='font-size:1em'>users</a>
       </li><li>
@@ -254,12 +262,8 @@ gtag('config', 'UA-148436067-1');
   
 
   <div class='container entry-content'>
-  
-
-<p>Cheatsheet for <em>Linux User Management</em></p>
-
+  <p>Cheatsheet for <em>Linux User Management</em></p>
 <h3 id="handling-users">Handling users</h3>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># adds a new user called &#39;schoeffm&#39;</span>
 useradd -m -s /bin/zsh -G docker schoeffm
 <span style="color:#75715e">#       └┬┘└────┬─────┘└─┬─────┘</span>
@@ -269,7 +273,6 @@ useradd -m -s /bin/zsh -G docker schoeffm
 <span style="color:#75715e">#        │      └─&gt; login shell of the new account</span>
 <span style="color:#75715e">#        └────────&gt; also create a home directory for this</span> 
 <span style="color:#75715e">#                   account</span></code></pre></div>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e">#           Assigns a new UID to &lt;─────┐</span>
 <span style="color:#75715e">#           this account               │</span>
 <span style="color:#75715e">#                                   ┌──┴──┐</span> 
@@ -280,11 +283,8 @@ usermod -aG docker -s /bin/zsh -L|U -u <span style="color:#ae81ff">4711</span> s
 <span style="color:#75715e">#           └────────────&gt; append to the list of groups</span> 
 <span style="color:#75715e">#                          without &#39;a&#39; this will replace</span>
 <span style="color:#75715e">#                          the group list</span></code></pre></div>
-
 <p><code>userdel</code> not explicitly shown here since it&rsquo;s comprehensible.</p>
-
 <h3 id="dealing-with-groups">Dealing with groups</h3>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># Introduces a new user-group called &#39;shared&#39;</span>
 groupadd -f -g <span style="color:#ae81ff">4711</span> shared
 <span style="color:#75715e">#         │ └──┬──┘</span>
@@ -293,11 +293,8 @@ groupadd -f -g <span style="color:#ae81ff">4711</span> shared
 <span style="color:#75715e">#             group already exists (won&#39;t change the</span> 
 <span style="color:#75715e">#             existing group - so GID of existing group</span>
 <span style="color:#75715e">#             isn&#39;t updated)</span></code></pre></div>
-
 <p><code>groupmod</code> and <code>groupdel</code> not explicitly shown here since they&rsquo;re comprehensible.</p>
-
 <h3 id="information-gathering">Information gathering</h3>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># list all available groups and their GID</span>
 awk -F<span style="color:#e6db74">&#39;:&#39;</span> <span style="color:#e6db74">&#39;{print $1 &#34; &#34; $3}&#39;</span> /etc/group
 <span style="color:#75715e">#   └─┬─┘         └───┬────┘  └───┬────┘</span>
@@ -306,7 +303,6 @@ awk -F<span style="color:#e6db74">&#39;:&#39;</span> <span style="color:#e6db74"
 <span style="color:#75715e">#     │                   separate &#39;em with a single</span>
 <span style="color:#75715e">#     │                   space</span>
 <span style="color:#75715e">#     └─&gt; change default field-separator to use :</span></code></pre></div>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># prints one entry of /etc/passwd (whole line)</span>
 awk -F<span style="color:#e6db74">&#39;:&#39;</span> <span style="color:#e6db74">&#39;/proxy/ {print}&#39;</span> /etc/passwd
 <span style="color:#75715e">#   └─┬─┘ └──┬──┘</span>
@@ -322,16 +318,14 @@ proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
 <span style="color:#75715e">#     │   └─&gt; UID:GID of this user and his primary</span> 
 <span style="color:#75715e">#     │       group</span>
 <span style="color:#75715e">#     └─&gt; stands for the password which isn&#39;t shown</span></code></pre></div>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># lists all users currently logged in and what they&#39;re executing</span> 
 <span style="color:#75715e"># right now</span>
 w</code></pre></div>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># although offers a bunch of options the simplest form of the</span>
 <span style="color:#75715e"># command already prints all necessary information</span>
 id <span style="color:#f92672">[</span>username<span style="color:#f92672">]</span>
 
-uid<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span><span style="color:#f92672">(</span>root<span style="color:#f92672">)</span> gid<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span><span style="color:#f92672">(</span>root<span style="color:#f92672">)</span> groups<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span><span style="color:#f92672">(</span>root<span style="color:#f92672">)</span>
+uid<span style="color:#f92672">=</span>0<span style="color:#f92672">(</span>root<span style="color:#f92672">)</span> gid<span style="color:#f92672">=</span>0<span style="color:#f92672">(</span>root<span style="color:#f92672">)</span> groups<span style="color:#f92672">=</span>0<span style="color:#f92672">(</span>root<span style="color:#f92672">)</span>
 <span style="color:#75715e">#   └──┬──┘ └────┬────┘ └─┬──────────┘</span>
 <span style="color:#75715e">#      │         │        └─&gt; all groups the user is a member of</span>
 <span style="color:#75715e">#      │         └─&gt; gid and name of the primary group of this</span> 

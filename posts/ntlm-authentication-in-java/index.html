@@ -13,7 +13,7 @@ Luckily, I finally stumbled upon the Authenticator-class in Java and learned tha
 <meta property='og:site_name' content='Personal PasteBin'>
 <meta property='og:type' content='article'><meta property='article:section' content='posts'><meta property='article:tag' content='java'><meta property='article:tag' content='security'><meta property='article:tag' content='ntlm'><meta property='article:tag' content='authentication'><meta property='article:published_time' content='2019-09-20T07:52:55&#43;02:00'/><meta property='article:modified_time' content='2019-09-20T07:52:55&#43;02:00'/><meta name='twitter:card' content='summary'>
 
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.63.2" />
 
   <title>Ntlm Authentication in Java • Personal PasteBin</title>
   <link rel='canonical' href='https://schoeffm.github.io/posts/ntlm-authentication-in-java/'>
@@ -75,13 +75,15 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/base64/' style='font-size:1em'>base64</a>
       </li><li>
+        <a href='/tags/bash/' style='font-size:1em'>bash</a>
+      </li><li>
         <a href='/tags/cheatsheet/' style='font-size:1.2em'>cheatsheet</a>
       </li><li>
         <a href='/tags/chunk/' style='font-size:1em'>chunk</a>
       </li><li>
         <a href='/tags/ci/cd/' style='font-size:1em'>ci/cd</a>
       </li><li>
-        <a href='/tags/cli/' style='font-size:1.6em'>cli</a>
+        <a href='/tags/cli/' style='font-size:1.8em'>cli</a>
       </li><li>
         <a href='/tags/configuration/' style='font-size:1em'>configuration</a>
       </li><li>
@@ -109,6 +111,10 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/jmeter/' style='font-size:1em'>jmeter</a>
       </li><li>
+        <a href='/tags/jq/' style='font-size:1em'>jq</a>
+      </li><li>
+        <a href='/tags/json/' style='font-size:1em'>json</a>
+      </li><li>
         <a href='/tags/kubernetes/' style='font-size:1em'>kubernetes</a>
       </li><li>
         <a href='/tags/linux/' style='font-size:1.2em'>linux</a>
@@ -135,6 +141,8 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/rest/' style='font-size:1em'>rest</a>
       </li><li>
+        <a href='/tags/scripting/' style='font-size:1em'>scripting</a>
+      </li><li>
         <a href='/tags/security/' style='font-size:1em'>security</a>
       </li><li>
         <a href='/tags/ssh/' style='font-size:1em'>ssh</a>
@@ -147,7 +155,7 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/testing/' style='font-size:1.2em'>testing</a>
       </li><li>
-        <a href='/tags/tools/' style='font-size:1.2em'>tools</a>
+        <a href='/tags/tools/' style='font-size:1.4em'>tools</a>
       </li><li>
         <a href='/tags/users/' style='font-size:1em'>users</a>
       </li><li>
@@ -254,83 +262,68 @@ gtag('config', 'UA-148436067-1');
   
 
   <div class='container entry-content'>
-  <p>Recently I had to integrate a java based application with a web-service that used NTLM authentication. Since this was the first time I came across NTLM I initially had to explore how to deal with that auth-scheme. <br/>
-Luckily, I finally stumbled upon the <code>Authenticator</code>-class in Java and learned that there is build in support for NTLM already.<br/></p>
-
+  <p>Recently I had to integrate a java based application with a web-service that used NTLM authentication. Since this was the first time I came across NTLM I initially had to explore how to deal with that auth-scheme. <!-- raw HTML omitted -->
+Luckily, I finally stumbled upon the <code>Authenticator</code>-class in Java and learned that there is build in support for NTLM already.<!-- raw HTML omitted --></p>
 <h2 id="how-is-ntlm-supposed-to-work">How is NTLM supposed to work?</h2>
-
-<p>Well, as you&rsquo;ve might guessed I&rsquo;m not an expert here and if you&rsquo;d like to learn more I encourage you to head over to <a href="https://www.innovation.ch/personal/ronald/ntlm.html" target="_blank">this reverse engineering documentation</a> of the NTLM protocol. For the sake of this post though, we just focus on the handshake which
+<p>Well, as you&rsquo;ve might guessed I&rsquo;m not an expert here and if you&rsquo;d like to learn more I encourage you to head over to <a href="https://www.innovation.ch/personal/ronald/ntlm.html">this reverse engineering documentation</a> of the NTLM protocol. For the sake of this post though, we just focus on the handshake which
 provides a pretty good overview of the steps involved:</p>
-
 <figure>
     <img src="/posts/ntlm_auth/ntlm_auth.png"
          alt="NTLM handshake" width="65%"/> 
 </figure>
 
-
-<p><strong>1.1 Client &ndash;[POST]&ndash;&gt; Server</strong>:<br/>
-In our use-case the java app issues a web-service call (thus a <code>POST</code>-call) to the destination. Right now this call doesn&rsquo;t contain any authentication information at all.<br/>
-<strong>1.2 Client &lt;&ndash;[401]&ndash; Server</strong>:<br/>
+<p><strong>1.1 Client &ndash;[POST]&ndash;&gt; Server</strong>:<!-- raw HTML omitted -->
+In our use-case the java app issues a web-service call (thus a <code>POST</code>-call) to the destination. Right now this call doesn&rsquo;t contain any authentication information at all.<!-- raw HTML omitted -->
+<strong>1.2 Client &lt;&ndash;[401]&ndash; Server</strong>:<!-- raw HTML omitted -->
 The server answers with a <code>401</code> (== Unauthorized) return code and announces the NTLM auth-scheme by adding a <code>WWW-Authenticate: NTLM</code>-header to the response.</p>
-
-<p><strong>2.1 Client &ndash;[POST]&ndash;&gt; Server</strong>:<br/>
-The client re-sends its request but this time an <code>Authorization</code>-header is added as well. The header contains the <code>NTLM</code> auth-scheme and a so called type 1 message that indicates supported options.<br/>
-<strong>2.2 Client &lt;&ndash;[401]&ndash; Server</strong>:<br/>
+<p><strong>2.1 Client &ndash;[POST]&ndash;&gt; Server</strong>:<!-- raw HTML omitted -->
+The client re-sends its request but this time an <code>Authorization</code>-header is added as well. The header contains the <code>NTLM</code> auth-scheme and a so called type 1 message that indicates supported options.<!-- raw HTML omitted -->
+<strong>2.2 Client &lt;&ndash;[401]&ndash; Server</strong>:<!-- raw HTML omitted -->
 Again the server responds with a <code>401</code> code but this time it also returns a challenge (basically a random number) contained in the <code>WWW-Authenticate</code>-header again.</p>
-
-<p><strong>3.1 Client &ndash;[POST]&ndash;&gt; Server</strong>:<br/>
-And again the client sends its original request but now the <code>Authorization</code>-header contains the encrypted challenge received in step 2.2. The key for this encryption is the users password-hash.<br/>
-<strong>3.2 Client &lt;&ndash;[200]&ndash; Server</strong>:<br/>
+<p><strong>3.1 Client &ndash;[POST]&ndash;&gt; Server</strong>:<!-- raw HTML omitted -->
+And again the client sends its original request but now the <code>Authorization</code>-header contains the encrypted challenge received in step 2.2. The key for this encryption is the users password-hash.<!-- raw HTML omitted -->
+<strong>3.2 Client &lt;&ndash;[200]&ndash; Server</strong>:<!-- raw HTML omitted -->
 The server now does the equivalent (by asking the domain controller for the password hash) and compares the encryption results - finally, if everything matches, the requested resource is returned.</p>
-
 <h2 id="how-to-support-that-in-java">How to support that in Java</h2>
-
 <p>All this handshaking looks pretty elaborate - but the good news is that the NTLM authentication is already supported (<em>the more challenging task was to figure out how to leverage that support</em>).</p>
-
-<p>Normally, you already know that you&rsquo;ll have to authenticate yourself and for schemes like <strong>Basic Auth</strong> you usually add your authentication information directly to the request (<em>also to prevent an additional round-trip</em>). Hence no surprise, that you can spent a good portion of your career without knowing about the <a href="https://docs.oracle.com/javase/7/docs/api/java/net/Authenticator.html" target="_blank"><code>java.net.Authenticator</code></a> class.<br/>
-It was introduced in Java 1.2 (so it&rsquo;s quite old) initially without NTLM support which was added later. Besides the <a href="https://docs.oracle.com/javase/8/docs/api/java/net/Authenticator.html" target="_blank">API-documentation</a> the usage of that class is also described in the <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/net/http-auth.html" target="_blank">Java SE documentation</a>.</p>
-
-<p>So, how this works is that you register a sub-class of <code>java.net.Authenticator</code> for your whole application using the static method <code>Authenticator.setDefault(Authenticator)</code>. The only thing you&rsquo;ll have to overwrite in that sub-class is the <code>getPasswordAuthentication()</code>-method which gets called by the networking-stack whenever a proxy or a server requests authentication (<em>i.e. during a handshake as described above</em>).<br/>
+<p>Normally, you already know that you&rsquo;ll have to authenticate yourself and for schemes like <strong>Basic Auth</strong> you usually add your authentication information directly to the request (<em>also to prevent an additional round-trip</em>). Hence no surprise, that you can spent a good portion of your career without knowing about the <a href="https://docs.oracle.com/javase/7/docs/api/java/net/Authenticator.html"><code>java.net.Authenticator</code></a> class.<!-- raw HTML omitted -->
+It was introduced in Java 1.2 (so it&rsquo;s quite old) initially without NTLM support which was added later. Besides the <a href="https://docs.oracle.com/javase/8/docs/api/java/net/Authenticator.html">API-documentation</a> the usage of that class is also described in the <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/net/http-auth.html">Java SE documentation</a>.</p>
+<p>So, how this works is that you register a sub-class of <code>java.net.Authenticator</code> for your whole application using the static method <code>Authenticator.setDefault(Authenticator)</code>. The only thing you&rsquo;ll have to overwrite in that sub-class is the <code>getPasswordAuthentication()</code>-method which gets called by the networking-stack whenever a proxy or a server requests authentication (<em>i.e. during a handshake as described above</em>).<!-- raw HTML omitted -->
 It&rsquo;s up to your implementation how it retrieves the credentials - it could be interactive (<em>i.e. when used in fat-client</em>) or it can return pre-configured credentials (<em>i.e. in a server environment</em>).</p>
-
 <p>One downside of that approach is that you can only register one instance - hence, if you&rsquo;ll have to support a bunch of different servers or different authentication schemes you&rsquo;d have to distribute that responsibility from within our <code>Authenticator</code>-implementation (<em>just to prevent it from becoming a mess - technically of course you can put everything into one class</em>).</p>
-
 <p>So, in a JEE environment you could define a startup-singleton which globally registers a suitable <code>Authenticator</code>:</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@Singleton</span>
 <span style="color:#a6e22e">@Startup</span>
-<span style="color:#960050;background-color:#1e0010">public class </span>AuthenticatorInitializer {
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">AuthenticatorInitializer</span> <span style="color:#f92672">{</span>
     <span style="color:#a6e22e">@Inject</span>
-    <span style="color:#a6e22e">@ConfigProperty</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ntlm.user&#34;</span>)
-    <span style="color:#960050;background-color:#1e0010">String username</span>;
+    <span style="color:#a6e22e">@ConfigProperty</span><span style="color:#f92672">(</span>name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ntlm.user&#34;</span><span style="color:#f92672">)</span>
+    String username<span style="color:#f92672">;</span>
 
     <span style="color:#a6e22e">@Inject</span>
-    <span style="color:#a6e22e">@ConfigProperty</span>(name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ntlm.password&#34;</span>)
-    <span style="color:#960050;background-color:#1e0010">String password</span>;
+    <span style="color:#a6e22e">@ConfigProperty</span><span style="color:#f92672">(</span>name <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ntlm.password&#34;</span><span style="color:#f92672">)</span>
+    String password<span style="color:#f92672">;</span>
     
     <span style="color:#a6e22e">@PostConstruct</span>
-    <span style="color:#960050;background-color:#1e0010">void initializeAuthenticator</span>() {        
-        Authenticator.<span style="color:#a6e22e">setDefault</span>(<span style="color:#66d9ef">new</span> NtlmAuthenticator(username, password));
-    }
+    <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">initializeAuthenticator</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>        
+        Authenticator<span style="color:#f92672">.</span><span style="color:#a6e22e">setDefault</span><span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> NtlmAuthenticator<span style="color:#f92672">(</span>username<span style="color:#f92672">,</span> password<span style="color:#f92672">)</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span>
     
-    <span style="color:#960050;background-color:#1e0010">static class NtlmAuthenticator extends </span>Authenticator {
-        <span style="color:#960050;background-color:#1e0010">private PasswordAuthentication </span>passwordAuthentication;
+    <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">NtlmAuthenticator</span> <span style="color:#66d9ef">extends</span> Authenticator <span style="color:#f92672">{</span>
+        <span style="color:#66d9ef">private</span> PasswordAuthentication passwordAuthentication<span style="color:#f92672">;</span>
                 
-        NtlmAuthenticator(<span style="color:#960050;background-color:#1e0010">final String </span>username, <span style="color:#960050;background-color:#1e0010">final String </span>password) {
-            <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">passwordAuthentication</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PasswordAuthentication(username, password.<span style="color:#a6e22e">toCharArray</span>())
-        }
+        NtlmAuthenticator<span style="color:#f92672">(</span><span style="color:#66d9ef">final</span> String username<span style="color:#f92672">,</span> <span style="color:#66d9ef">final</span> String password<span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">passwordAuthentication</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> PasswordAuthentication<span style="color:#f92672">(</span>username<span style="color:#f92672">,</span> password<span style="color:#f92672">.</span><span style="color:#a6e22e">toCharArray</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">)</span>
+        <span style="color:#f92672">}</span>
         
-        <span style="color:#960050;background-color:#1e0010">protected PasswordAuthentication </span>getPasswordAuthentication() {
-            <span style="color:#66d9ef">return</span> (<span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">getRequestingScheme</span>().<span style="color:#a6e22e">trim</span>().<span style="color:#a6e22e">equalsIgnoreCase</span>(<span style="color:#e6db74">&#34;NTLM&#34;</span>)) 
-                <span style="color:#f92672">?</span> <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">passwordAuthentication</span>
-                <span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>;
-        }
-    }
-}</code></pre></div>
-
+        <span style="color:#66d9ef">protected</span> PasswordAuthentication <span style="color:#a6e22e">getPasswordAuthentication</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">getRequestingScheme</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">.</span><span style="color:#a6e22e">trim</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">.</span><span style="color:#a6e22e">equalsIgnoreCase</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;NTLM&#34;</span><span style="color:#f92672">)</span><span style="color:#f92672">)</span> 
+                <span style="color:#f92672">?</span> <span style="color:#66d9ef">this</span><span style="color:#f92672">.</span><span style="color:#a6e22e">passwordAuthentication</span>
+                <span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span><span style="color:#f92672">;</span>
+        <span style="color:#f92672">}</span>
+    <span style="color:#f92672">}</span>
+<span style="color:#f92672">}</span></code></pre></div>
 <p>As you can see, within the <code>getPasswordAuthentication()</code>-method you&rsquo;ll have access to further information about the requesting server. This allows you to distinguish between different servers, different auth-schemes etc. and thus enabling you to return matching credentials even when dealing with several service-provider.</p>
-
-<p>That should do the trick and if you&rsquo;d like to see what exactly is exchanged during a handshake I recommend you to have a look into my <a href="/posts/network-debugging-of-containerized-java-apps/" target="_blank">network debugging post</a> as well.</p>
+<p>That should do the trick and if you&rsquo;d like to see what exactly is exchanged during a handshake I recommend you to have a look into my <a href="/posts/network-debugging-of-containerized-java-apps/">network debugging post</a> as well.</p>
 </div>
 
   

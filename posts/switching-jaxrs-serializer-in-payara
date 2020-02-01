@@ -1,0 +1,19 @@
+---
+title: "Switching Jaxrs Serializer in Payara"
+date: 2020-01-16T09:00:36+01:00
+draft: true
+---
+
+    @ApplicationPath("api")
+    public class BDQVApplication extends javax.ws.rs.core.Application {
+
+        @Override
+        public Map<String, Object> getProperties() {
+            Map<String, Object> props = new HashMap<>();
+            // activate Jackson as JSON-provider for JAXB (and thus for JAX-RS)
+            // this will enable us to pass List<Entity> or Map<String, Entity> to JAX-RS
+            props.put("jersey.config.jsonFeature", "JacksonFeature");
+            return props;
+        }
+        ...
+    }

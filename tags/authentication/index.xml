@@ -17,8 +17,8 @@
       <pubDate>Fri, 20 Sep 2019 07:52:55 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/posts/ntlm-authentication-in-java/</guid>
-      <description>&lt;p&gt;Recently I had to integrate a java based application with a web-service that used NTLM authentication. Since this was the first time I came across NTLM I initially had to explore how to deal with that auth-scheme. &lt;br/&gt;
-Luckily, I finally stumbled upon the &lt;code&gt;Authenticator&lt;/code&gt;-class in Java and learned that there is build in support for NTLM already.&lt;br/&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Recently I had to integrate a java based application with a web-service that used NTLM authentication. Since this was the first time I came across NTLM I initially had to explore how to deal with that auth-scheme. &lt;!-- raw HTML omitted --&gt;
+Luckily, I finally stumbled upon the &lt;code&gt;Authenticator&lt;/code&gt;-class in Java and learned that there is build in support for NTLM already.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>
     
   </channel>

@@ -18,7 +18,6 @@
       
       <guid>https://schoeffm.github.io/posts/ssh-config-format/</guid>
       <description>&lt;p&gt;Dealing with SSH-connections can become cumbersome quickly especially when configurations change frequently, too.&lt;/p&gt;
-
 &lt;p&gt;Luckily, you can pre-configure most of a connections settings in a user specific config-file located in your &lt;code&gt;~/.ssh&lt;/code&gt;-folder called &lt;code&gt;config&lt;/code&gt;.&lt;/p&gt;</description>
     </item>
     

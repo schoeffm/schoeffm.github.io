@@ -6,10 +6,22 @@
     <description>Recent content on Personal PasteBin</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Jan 2020 12:00:56 +0100</lastBuildDate>
+    <lastBuildDate>Wed, 29 Jan 2020 15:07:59 +0100</lastBuildDate>
     
 	<atom:link href="https://schoeffm.github.io/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>jq by example</title>
+      <link>https://schoeffm.github.io/posts/jq-by-example/</link>
+      <pubDate>Wed, 29 Jan 2020 15:07:59 +0100</pubDate>
+      
+      <guid>https://schoeffm.github.io/posts/jq-by-example/</guid>
+      <description>Inspired by a nice tutorial on Baeldung I&amp;rsquo;ve decided to write done some usual suspects when working with jq. Hence, this is more like a cheatsheet than a regular post.
+For practitioners and interactive learners I also recommend the great jq-play online editor where you can try jq directly in the browser.
+For our examples below let&amp;rsquo;s go with the followin&amp;rsquo; JSON-input (fetched from a micro-profile /health-endpoint).
+{ &amp;#34;outcome&amp;#34;: &amp;#34;UP&amp;#34;, &amp;#34;checks&amp;#34;: [ { &amp;#34;name&amp;#34;: &amp;#34;core-isAlive&amp;#34;, &amp;#34;state&amp;#34;: &amp;#34;UP&amp;#34;, &amp;#34;data&amp;#34;: { &amp;#34;buildtime&amp;#34;: &amp;#34;2020-01-29T12:46:05.</description>
+    </item>
     
     <item>
       <title>Access Host From Inside a Docker Container</title>
@@ -28,8 +40,8 @@
       <pubDate>Fri, 20 Sep 2019 07:52:55 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/posts/ntlm-authentication-in-java/</guid>
-      <description>&lt;p&gt;Recently I had to integrate a java based application with a web-service that used NTLM authentication. Since this was the first time I came across NTLM I initially had to explore how to deal with that auth-scheme. &lt;br/&gt;
-Luckily, I finally stumbled upon the &lt;code&gt;Authenticator&lt;/code&gt;-class in Java and learned that there is build in support for NTLM already.&lt;br/&gt;&lt;/p&gt;</description>
+      <description>&lt;p&gt;Recently I had to integrate a java based application with a web-service that used NTLM authentication. Since this was the first time I came across NTLM I initially had to explore how to deal with that auth-scheme. &lt;!-- raw HTML omitted --&gt;
+Luckily, I finally stumbled upon the &lt;code&gt;Authenticator&lt;/code&gt;-class in Java and learned that there is build in support for NTLM already.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -38,8 +50,8 @@ Luckily, I finally stumbled upon the &lt;code&gt;Authenticator&lt;/code&gt;-clas
       <pubDate>Thu, 19 Sep 2019 16:27:21 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/posts/network-debugging-of-containerized-java-apps/</guid>
-      <description>&lt;p&gt;The other day, I had the need to look closer into the network communication of a (dockerized) JEE application. My usual &lt;a href=&#34;https://schoeffm.github.io/posts/tcpdump-common-commands/&#34; target=&#34;_blank&#34;&gt;tcpdump approach&lt;/a&gt; wasn&amp;rsquo;t applicable though because the traffic was TLS-encrypted.&lt;br/&gt;
-Finally, I ended up with a setup where the app used a &lt;a href=&#34;https://mitmproxy.org&#34; target=&#34;_blank&#34;&gt;man-in-the-middle proxy&lt;/a&gt; for all its communication - that proxy transparently re-encrypted the traffic which gave me the chance to inspect every single message exchanged.&lt;/p&gt;</description>
+      <description>&lt;p&gt;The other day, I had the need to look closer into the network communication of a (dockerized) JEE application. My usual &lt;a href=&#34;https://schoeffm.github.io/posts/tcpdump-common-commands/&#34;&gt;tcpdump approach&lt;/a&gt; wasn&amp;rsquo;t applicable though because the traffic was TLS-encrypted.&lt;!-- raw HTML omitted --&gt;
+Finally, I ended up with a setup where the app used a &lt;a href=&#34;https://mitmproxy.org&#34;&gt;man-in-the-middle proxy&lt;/a&gt; for all its communication - that proxy transparently re-encrypted the traffic which gave me the chance to inspect every single message exchanged.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -58,7 +70,7 @@ Hence, to shed more light upon the topic, I&amp;rsquo;d like to give some workin
       <pubDate>Wed, 14 Aug 2019 10:41:28 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/posts/integration-of-loadtests-within-jenkins-pipelines/</guid>
-      <description>&lt;p&gt;Over years &lt;a href=&#34;https://jmeter.apache.org/&#34; target=&#34;_blank&#34;&gt;JMeter&lt;/a&gt; has always been a valuable tool in my box when dealing with performance testing. But when we&amp;rsquo;ve integrated those tests with our CI/CD-pipeline we always had hard times to control the pipeline outcome based on the performance results. &lt;br/&gt;
+      <description>&lt;p&gt;Over years &lt;a href=&#34;https://jmeter.apache.org/&#34;&gt;JMeter&lt;/a&gt; has always been a valuable tool in my box when dealing with performance testing. But when we&amp;rsquo;ve integrated those tests with our CI/CD-pipeline we always had hard times to control the pipeline outcome based on the performance results. &lt;!-- raw HTML omitted --&gt;
 In other words, let the test results act as a quality gate for either promoting the build-artfiact along the pipeline or not.&lt;/p&gt;</description>
     </item>
     
@@ -89,8 +101,8 @@ Standard Permissions There are three basic permissions which are read, write and
       <pubDate>Fri, 02 Aug 2019 08:14:21 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/posts/testing-web-components/</guid>
-      <description>&lt;p&gt;Testing web-components in isolation can be a challenging task. The (&lt;em&gt;current&lt;/em&gt;) usual suspects in this area still &lt;a href=&#34;https://github.com/jsdom/jsdom/issues/1030&#34; target=&#34;_blank&#34;&gt;lack support for the standard&lt;/a&gt; and thus cannot be used (at least at the time of this writing). Also, the web is swamped by posts about frameworks and thus finding good example projects or tutorials is also challenging.&lt;br/&gt;
-Finally, we found, at least for our project, a good solution which does the job and whose setup I&amp;rsquo;d like to write down/preserve (find the &lt;a href=&#34;https://github.com/schoeffm/testing-web-components&#34; target=&#34;_blank&#34;&gt;corrsponding code in this repo&lt;/a&gt;).&lt;/p&gt;</description>
+      <description>&lt;p&gt;Testing web-components in isolation can be a challenging task. The (&lt;em&gt;current&lt;/em&gt;) usual suspects in this area still &lt;a href=&#34;https://github.com/jsdom/jsdom/issues/1030&#34;&gt;lack support for the standard&lt;/a&gt; and thus cannot be used (at least at the time of this writing). Also, the web is swamped by posts about frameworks and thus finding good example projects or tutorials is also challenging.&lt;!-- raw HTML omitted --&gt;
+Finally, we found, at least for our project, a good solution which does the job and whose setup I&amp;rsquo;d like to write down/preserve (find the &lt;a href=&#34;https://github.com/schoeffm/testing-web-components&#34;&gt;corrsponding code in this repo&lt;/a&gt;).&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -100,7 +112,6 @@ Finally, we found, at least for our project, a good solution which does the job 
       
       <guid>https://schoeffm.github.io/posts/tcpdump-common-commands/</guid>
       <description>&lt;p&gt;When debugging network related issues the CLI tool &lt;code&gt;tcpdump&lt;/code&gt; is a valuable assistant. I usually use a variation of this base command:&lt;/p&gt;
-
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;    sudo tcpdump -A -i lo0 -n -s0 -v port &lt;span style=&#34;color:#ae81ff&#34;&gt;8080&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
@@ -110,7 +121,7 @@ Finally, we found, at least for our project, a good solution which does the job 
       <pubDate>Sun, 28 Jul 2019 12:18:59 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/posts/response-streaming-between-jaxrs-and-webcomponents-part2/</guid>
-      <description>&lt;p&gt;In &lt;a href=&#34;https://schoeffm.github.io/posts/response-streaming-between-jaxrs-and-webcomponents-part1/&#34; target=&#34;_blank&#34;&gt;part one&lt;/a&gt; we had a look at a JAX-RS endpoint that streams its content to the requesting client. Now I&amp;rsquo;d like to show how the &lt;code&gt;fetch&lt;/code&gt;-API can be used to consume that streamed content in a web component.&lt;/p&gt;</description>
+      <description>&lt;p&gt;In &lt;a href=&#34;https://schoeffm.github.io/posts/response-streaming-between-jaxrs-and-webcomponents-part1/&#34;&gt;part one&lt;/a&gt; we had a look at a JAX-RS endpoint that streams its content to the requesting client. Now I&amp;rsquo;d like to show how the &lt;code&gt;fetch&lt;/code&gt;-API can be used to consume that streamed content in a web component.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -128,7 +139,7 @@ Finally, we found, at least for our project, a good solution which does the job 
       <pubDate>Sat, 13 Jul 2019 14:58:39 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/posts/easy-en-decoding-using-base64/</guid>
-      <description>&lt;p&gt;When dealing with &lt;a href=&#34;https://kubernetes.io/docs/concepts/configuration/secret/&#34; target=&#34;_blank&#34;&gt;Kubernetes secrets&lt;/a&gt; or when testing REST-services using i.e. &lt;code&gt;curl&lt;/code&gt; it&amp;rsquo;s nice to have a fast&amp;rsquo;n&amp;rsquo;easy way of de- and encoding characters using &lt;a href=&#34;https://de.wikipedia.org/wiki/Base64&#34; target=&#34;_blank&#34;&gt;base64&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>&lt;p&gt;When dealing with &lt;a href=&#34;https://kubernetes.io/docs/concepts/configuration/secret/&#34;&gt;Kubernetes secrets&lt;/a&gt; or when testing REST-services using i.e. &lt;code&gt;curl&lt;/code&gt; it&amp;rsquo;s nice to have a fast&amp;rsquo;n&amp;rsquo;easy way of de- and encoding characters using &lt;a href=&#34;https://de.wikipedia.org/wiki/Base64&#34;&gt;base64&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -138,7 +149,6 @@ Finally, we found, at least for our project, a good solution which does the job 
       
       <guid>https://schoeffm.github.io/posts/ssh-config-format/</guid>
       <description>&lt;p&gt;Dealing with SSH-connections can become cumbersome quickly especially when configurations change frequently, too.&lt;/p&gt;
-
 &lt;p&gt;Luckily, you can pre-configure most of a connections settings in a user specific config-file located in your &lt;code&gt;~/.ssh&lt;/code&gt;-folder called &lt;code&gt;config&lt;/code&gt;.&lt;/p&gt;</description>
     </item>
     
@@ -148,7 +158,7 @@ Finally, we found, at least for our project, a good solution which does the job 
       <pubDate>Mon, 10 Jun 2019 10:40:12 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/posts/api-versioning-with-vendor-specific-media-types/</guid>
-      <description>&lt;p&gt;Content Negotiation in JAX-RS allows you to leverage the information in the client requests &lt;code&gt;Accept&lt;/code&gt; header to map that request to a specific handler-method within your application. In combination with vendor-specific media types this approach can be used for &lt;a href=&#34;http://blog.steveklabnik.com/posts/2011-07-03-nobody-understands-rest-or-http&#34; target=&#34;_blank&#34;&gt;versioning of an API&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>&lt;p&gt;Content Negotiation in JAX-RS allows you to leverage the information in the client requests &lt;code&gt;Accept&lt;/code&gt; header to map that request to a specific handler-method within your application. In combination with vendor-specific media types this approach can be used for &lt;a href=&#34;http://blog.steveklabnik.com/posts/2011-07-03-nobody-understands-rest-or-http&#34;&gt;versioning of an API&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
   </channel>

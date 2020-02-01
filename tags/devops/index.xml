@@ -17,8 +17,8 @@
       <pubDate>Thu, 19 Sep 2019 16:27:21 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/posts/network-debugging-of-containerized-java-apps/</guid>
-      <description>&lt;p&gt;The other day, I had the need to look closer into the network communication of a (dockerized) JEE application. My usual &lt;a href=&#34;https://schoeffm.github.io/posts/tcpdump-common-commands/&#34; target=&#34;_blank&#34;&gt;tcpdump approach&lt;/a&gt; wasn&amp;rsquo;t applicable though because the traffic was TLS-encrypted.&lt;br/&gt;
-Finally, I ended up with a setup where the app used a &lt;a href=&#34;https://mitmproxy.org&#34; target=&#34;_blank&#34;&gt;man-in-the-middle proxy&lt;/a&gt; for all its communication - that proxy transparently re-encrypted the traffic which gave me the chance to inspect every single message exchanged.&lt;/p&gt;</description>
+      <description>&lt;p&gt;The other day, I had the need to look closer into the network communication of a (dockerized) JEE application. My usual &lt;a href=&#34;https://schoeffm.github.io/posts/tcpdump-common-commands/&#34;&gt;tcpdump approach&lt;/a&gt; wasn&amp;rsquo;t applicable though because the traffic was TLS-encrypted.&lt;!-- raw HTML omitted --&gt;
+Finally, I ended up with a setup where the app used a &lt;a href=&#34;https://mitmproxy.org&#34;&gt;man-in-the-middle proxy&lt;/a&gt; for all its communication - that proxy transparently re-encrypted the traffic which gave me the chance to inspect every single message exchanged.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -27,7 +27,7 @@ Finally, I ended up with a setup where the app used a &lt;a href=&#34;https://mi
       <pubDate>Wed, 14 Aug 2019 10:41:28 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/posts/integration-of-loadtests-within-jenkins-pipelines/</guid>
-      <description>&lt;p&gt;Over years &lt;a href=&#34;https://jmeter.apache.org/&#34; target=&#34;_blank&#34;&gt;JMeter&lt;/a&gt; has always been a valuable tool in my box when dealing with performance testing. But when we&amp;rsquo;ve integrated those tests with our CI/CD-pipeline we always had hard times to control the pipeline outcome based on the performance results. &lt;br/&gt;
+      <description>&lt;p&gt;Over years &lt;a href=&#34;https://jmeter.apache.org/&#34;&gt;JMeter&lt;/a&gt; has always been a valuable tool in my box when dealing with performance testing. But when we&amp;rsquo;ve integrated those tests with our CI/CD-pipeline we always had hard times to control the pipeline outcome based on the performance results. &lt;!-- raw HTML omitted --&gt;
 In other words, let the test results act as a quality gate for either promoting the build-artfiact along the pipeline or not.&lt;/p&gt;</description>
     </item>
     
@@ -59,7 +59,6 @@ Standard Permissions There are three basic permissions which are read, write and
       
       <guid>https://schoeffm.github.io/posts/tcpdump-common-commands/</guid>
       <description>&lt;p&gt;When debugging network related issues the CLI tool &lt;code&gt;tcpdump&lt;/code&gt; is a valuable assistant. I usually use a variation of this base command:&lt;/p&gt;
-
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;    sudo tcpdump -A -i lo0 -n -s0 -v port &lt;span style=&#34;color:#ae81ff&#34;&gt;8080&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
@@ -70,7 +69,6 @@ Standard Permissions There are three basic permissions which are read, write and
       
       <guid>https://schoeffm.github.io/posts/ssh-config-format/</guid>
       <description>&lt;p&gt;Dealing with SSH-connections can become cumbersome quickly especially when configurations change frequently, too.&lt;/p&gt;
-
 &lt;p&gt;Luckily, you can pre-configure most of a connections settings in a user specific config-file located in your &lt;code&gt;~/.ssh&lt;/code&gt;-folder called &lt;code&gt;config&lt;/code&gt;.&lt;/p&gt;</description>
     </item>
     

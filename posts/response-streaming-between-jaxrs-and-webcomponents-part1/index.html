@@ -11,7 +11,7 @@
 <meta property='og:site_name' content='Personal PasteBin'>
 <meta property='og:type' content='article'><meta property='article:section' content='posts'><meta property='article:tag' content='jax-rs'><meta property='article:tag' content='jee'><meta property='article:tag' content='jakartaee'><meta property='article:tag' content='microprofile'><meta property='article:tag' content='streaming'><meta property='article:published_time' content='2019-07-25T00:00:00&#43;02:00'/><meta property='article:modified_time' content='2019-07-27T11:18:59&#43;02:00'/><meta name='twitter:card' content='summary'>
 
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.63.2" />
 
   <title>Response streaming between JAX-RS and Web-Components (Part 1) • Personal PasteBin</title>
   <link rel='canonical' href='https://schoeffm.github.io/posts/response-streaming-between-jaxrs-and-webcomponents-part1/'>
@@ -73,13 +73,15 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/base64/' style='font-size:1em'>base64</a>
       </li><li>
+        <a href='/tags/bash/' style='font-size:1em'>bash</a>
+      </li><li>
         <a href='/tags/cheatsheet/' style='font-size:1.2em'>cheatsheet</a>
       </li><li>
         <a href='/tags/chunk/' style='font-size:1em'>chunk</a>
       </li><li>
         <a href='/tags/ci/cd/' style='font-size:1em'>ci/cd</a>
       </li><li>
-        <a href='/tags/cli/' style='font-size:1.6em'>cli</a>
+        <a href='/tags/cli/' style='font-size:1.8em'>cli</a>
       </li><li>
         <a href='/tags/configuration/' style='font-size:1em'>configuration</a>
       </li><li>
@@ -107,6 +109,10 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/jmeter/' style='font-size:1em'>jmeter</a>
       </li><li>
+        <a href='/tags/jq/' style='font-size:1em'>jq</a>
+      </li><li>
+        <a href='/tags/json/' style='font-size:1em'>json</a>
+      </li><li>
         <a href='/tags/kubernetes/' style='font-size:1em'>kubernetes</a>
       </li><li>
         <a href='/tags/linux/' style='font-size:1.2em'>linux</a>
@@ -133,6 +139,8 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/rest/' style='font-size:1em'>rest</a>
       </li><li>
+        <a href='/tags/scripting/' style='font-size:1em'>scripting</a>
+      </li><li>
         <a href='/tags/security/' style='font-size:1em'>security</a>
       </li><li>
         <a href='/tags/ssh/' style='font-size:1em'>ssh</a>
@@ -145,7 +153,7 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/testing/' style='font-size:1.2em'>testing</a>
       </li><li>
-        <a href='/tags/tools/' style='font-size:1.2em'>tools</a>
+        <a href='/tags/tools/' style='font-size:1.4em'>tools</a>
       </li><li>
         <a href='/tags/users/' style='font-size:1em'>users</a>
       </li><li>
@@ -253,54 +261,43 @@ gtag('config', 'UA-148436067-1');
 
   <div class='container entry-content'>
   <p>When dealing with JAX-RS resources are normally assembled completely in memory before being put onto the wire for transmission. If the resulting response fits into one single chunk the transmission is accomplished in one go - if the content is bigger than 16kB it will be split into several chunks of that size. You can see the difference in the response headers where a one-go-transmission contains the <code>Content-Length</code>-header (where the server announces the size of the content to be transmitted) while a chunked transmission lacks the <code>Content-Length</code> header but contains a <code>Transfer-Encoding: chunked</code> header.</p>
-
 <p>The crux with this approach is that you&rsquo;ll always have to <strong>load all the data comprising the response before a single bit is transfered to the client</strong>. That buffering can become a performance issue when dealing with large amounts of data or when loading of that data is sluggish.</p>
-
-<p>To ship chunks as soon as they&rsquo;re filled and before even knowing the final bit of the response you can make use of JAX-RS&rsquo; <code>StreamingOutput</code> interface. Put an implementation of that interface as the entity in a <code>Response</code> and JAX-RS will send each chunk as soon as it is filled. <br/>
+<p>To ship chunks as soon as they&rsquo;re filled and before even knowing the final bit of the response you can make use of JAX-RS&rsquo; <code>StreamingOutput</code> interface. Put an implementation of that interface as the entity in a <code>Response</code> and JAX-RS will send each chunk as soon as it is filled. <!-- raw HTML omitted -->
 Here&rsquo;s an example (simulating a large resource which also takes long to load):</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-java" data-lang="java"><span style="color:#a6e22e">@GET</span>
-<span style="color:#a6e22e">@Path</span>(<span style="color:#e6db74">&#34;stream&#34;</span>)
-<span style="color:#a6e22e">@Produces</span>(MediaType.<span style="color:#a6e22e">TEXT_PLAIN</span>)
-<span style="color:#960050;background-color:#1e0010">public Response </span>streamMe() {
-    <span style="color:#960050;background-color:#1e0010">StreamingOutput stream </span><span style="color:#f92672">=</span> output <span style="color:#f92672">-&gt;</span> {
-        <span style="color:#960050;background-color:#1e0010">Writer writer </span><span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedWriter(<span style="color:#66d9ef">new</span> OutputStreamWriter(output));
-        <span style="color:#66d9ef">for</span> (<span style="color:#960050;background-color:#1e0010">int i </span><span style="color:#f92672">=</span> 0; i <span style="color:#f92672">&lt;</span> 1000; i<span style="color:#f92672">++</span>) {
-            writer.<span style="color:#a6e22e">write</span>(Json.<span style="color:#a6e22e">createObjectBuilder</span>()
-                    .<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;index&#34;</span>, i)
-                    .<span style="color:#a6e22e">add</span>(<span style="color:#e6db74">&#34;content&#34;</span>, <span style="color:#e6db74">&#34;Some random text which actually can be generated in order to be really random&#34;</span>)
-                    .<span style="color:#a6e22e">build</span>().<span style="color:#a6e22e">toString</span>() <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\n&#34;</span>);
-            pause(10L); <span style="color:#75715e">// pause Thread for 10ms
-</span><span style="color:#75715e"></span>        }
-        writer.<span style="color:#a6e22e">flush</span>();
-    };
+<span style="color:#a6e22e">@Path</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;stream&#34;</span><span style="color:#f92672">)</span>
+<span style="color:#a6e22e">@Produces</span><span style="color:#f92672">(</span>MediaType<span style="color:#f92672">.</span><span style="color:#a6e22e">TEXT_PLAIN</span><span style="color:#f92672">)</span>
+<span style="color:#66d9ef">public</span> Response <span style="color:#a6e22e">streamMe</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+    StreamingOutput stream <span style="color:#f92672">=</span> output <span style="color:#f92672">-</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">{</span>
+        Writer writer <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> BufferedWriter<span style="color:#f92672">(</span><span style="color:#66d9ef">new</span> OutputStreamWriter<span style="color:#f92672">(</span>output<span style="color:#f92672">)</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+        <span style="color:#66d9ef">for</span> <span style="color:#f92672">(</span><span style="color:#66d9ef">int</span> i <span style="color:#f92672">=</span> 0<span style="color:#f92672">;</span> i <span style="color:#f92672">&lt;</span> 1000<span style="color:#f92672">;</span> i<span style="color:#f92672">+</span><span style="color:#f92672">+</span><span style="color:#f92672">)</span> <span style="color:#f92672">{</span>
+            writer<span style="color:#f92672">.</span><span style="color:#a6e22e">write</span><span style="color:#f92672">(</span>Json<span style="color:#f92672">.</span><span style="color:#a6e22e">createObjectBuilder</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span>
+                    <span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;index&#34;</span><span style="color:#f92672">,</span> i<span style="color:#f92672">)</span>
+                    <span style="color:#f92672">.</span><span style="color:#a6e22e">add</span><span style="color:#f92672">(</span><span style="color:#e6db74">&#34;content&#34;</span><span style="color:#f92672">,</span> <span style="color:#e6db74">&#34;Some random text which actually can be generated in order to be really random&#34;</span><span style="color:#f92672">)</span>
+                    <span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">.</span><span style="color:#a6e22e">toString</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#34;\n&#34;</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+            pause<span style="color:#f92672">(</span>10L<span style="color:#f92672">)</span><span style="color:#f92672">;</span> <span style="color:#75715e">// pause Thread for 10ms
+</span><span style="color:#75715e"></span>        <span style="color:#f92672">}</span>
+        writer<span style="color:#f92672">.</span><span style="color:#a6e22e">flush</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+    <span style="color:#f92672">}</span><span style="color:#f92672">;</span>
 
-    <span style="color:#66d9ef">return</span> Response.<span style="color:#a6e22e">ok</span>(stream).<span style="color:#a6e22e">build</span>();
-}</code></pre></div>
-
+    <span style="color:#66d9ef">return</span> Response<span style="color:#f92672">.</span><span style="color:#a6e22e">ok</span><span style="color:#f92672">(</span>stream<span style="color:#f92672">)</span><span style="color:#f92672">.</span><span style="color:#a6e22e">build</span><span style="color:#f92672">(</span><span style="color:#f92672">)</span><span style="color:#f92672">;</span>
+<span style="color:#f92672">}</span></code></pre></div>
 <p>The <code>StreamingOutput</code>-implementation is set as the <code>Response</code> entity. Notice, that the returned content is announced as <code>text/plain</code> since it&rsquo;s just a <em>newline</em> separated list of ASCII text (in part 2 when looking at a client implementation we&rsquo;ll see why this is necessary).</p>
-
 <p>When hitting this endpoint in the browser it&rsquo;ll show the followin&rsquo; waterfall diagram:</p>
-
 <figure>
     <img src="/posts/streaming/waterfall_when_response_is_streamed.png"
          alt="Streamed Response"/> 
 </figure>
 
-
 <p>Comparing this result to the behavior of a normal JAX-RS endpoint which doesn&rsquo;t use <code>StreamingOutput</code></p>
-
 <figure>
     <img src="/posts/streaming/waterfall_when_response_is_not_streamed.png"
          alt="Normal Response"/> 
 </figure>
 
-
 <p>you can see that the overall load-time didn&rsquo;t change. <strong>But the <em>time-to-first-byte (TTFB)</em> was significantly reduced.</strong> In the streaming-version of the endpoint the client could start parsing/rendering the (first part of the) output after 2.75 seconds while without streaming it has to wait the full 11.40 seconds.</p>
-
-<p>In both these examples the transmission was chunked - but only the first one leveraged the chunks to provide a better <a href="https://www.keycdn.com/blog/perceived-performance" target="_blank">perceived performance</a>.</p>
-
-<p>In the <a href="/posts/response-streaming-between-jaxrs-and-webcomponents-part2/" target="_blank">2nd part</a> of this post I&rsquo;ll show a (simple) web-component which uses the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" target="_blank">fetch-API</a> to load the streamed content - the complete code for these examples can be found in <a href="https://github.com/schoeffm/jax-rs-streamingoutput" target="_blank">this repository</a>.</p>
+<p>In both these examples the transmission was chunked - but only the first one leveraged the chunks to provide a better <a href="https://www.keycdn.com/blog/perceived-performance">perceived performance</a>.</p>
+<p>In the <a href="/posts/response-streaming-between-jaxrs-and-webcomponents-part2/">2nd part</a> of this post I&rsquo;ll show a (simple) web-component which uses the <a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API">fetch-API</a> to load the streamed content - the complete code for these examples can be found in <a href="https://github.com/schoeffm/jax-rs-streamingoutput">this repository</a>.</p>
 </div>
 
   

@@ -6,10 +6,64 @@
     <description>Recent content in Tags on Personal PasteBin</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 01 Jan 2020 12:00:56 +0100</lastBuildDate>
+    <lastBuildDate>Wed, 29 Jan 2020 15:07:59 +0100</lastBuildDate>
     
 	<atom:link href="https://schoeffm.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>bash</title>
+      <link>https://schoeffm.github.io/tags/bash/</link>
+      <pubDate>Wed, 29 Jan 2020 15:07:59 +0100</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/bash/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>cli</title>
+      <link>https://schoeffm.github.io/tags/cli/</link>
+      <pubDate>Wed, 29 Jan 2020 15:07:59 +0100</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/cli/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>jq</title>
+      <link>https://schoeffm.github.io/tags/jq/</link>
+      <pubDate>Wed, 29 Jan 2020 15:07:59 +0100</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/jq/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>json</title>
+      <link>https://schoeffm.github.io/tags/json/</link>
+      <pubDate>Wed, 29 Jan 2020 15:07:59 +0100</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/json/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>scripting</title>
+      <link>https://schoeffm.github.io/tags/scripting/</link>
+      <pubDate>Wed, 29 Jan 2020 15:07:59 +0100</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/scripting/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tools</title>
+      <link>https://schoeffm.github.io/tags/tools/</link>
+      <pubDate>Wed, 29 Jan 2020 15:07:59 +0100</pubDate>
+      
+      <guid>https://schoeffm.github.io/tags/tools/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>dev</title>
@@ -75,15 +129,6 @@
     </item>
     
     <item>
-      <title>cli</title>
-      <link>https://schoeffm.github.io/tags/cli/</link>
-      <pubDate>Thu, 19 Sep 2019 16:27:21 +0200</pubDate>
-      
-      <guid>https://schoeffm.github.io/tags/cli/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>devops</title>
       <link>https://schoeffm.github.io/tags/devops/</link>
       <pubDate>Thu, 19 Sep 2019 16:27:21 +0200</pubDate>
@@ -116,15 +161,6 @@
       <pubDate>Thu, 19 Sep 2019 16:27:21 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/tags/proxy/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>tools</title>
-      <link>https://schoeffm.github.io/tags/tools/</link>
-      <pubDate>Thu, 19 Sep 2019 16:27:21 +0200</pubDate>
-      
-      <guid>https://schoeffm.github.io/tags/tools/</guid>
       <description></description>
     </item>
     

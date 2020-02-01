@@ -15,7 +15,7 @@ Standard Permissions There are three basic permissions which are read, write and
 <meta property='og:site_name' content='Personal PasteBin'>
 <meta property='og:type' content='article'><meta property='article:section' content='posts'><meta property='article:tag' content='linux'><meta property='article:tag' content='permissions'><meta property='article:tag' content='cheatsheet'><meta property='article:tag' content='devops'><meta property='article:published_time' content='2019-08-06T00:00:00&#43;02:00'/><meta property='article:modified_time' content='2019-08-06T08:59:37&#43;02:00'/><meta name='twitter:card' content='summary'>
 
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.63.2" />
 
   <title>Linux Permission Management • Personal PasteBin</title>
   <link rel='canonical' href='https://schoeffm.github.io/posts/linux-permission-management/'>
@@ -77,13 +77,15 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/base64/' style='font-size:1em'>base64</a>
       </li><li>
+        <a href='/tags/bash/' style='font-size:1em'>bash</a>
+      </li><li>
         <a href='/tags/cheatsheet/' style='font-size:1.2em'>cheatsheet</a>
       </li><li>
         <a href='/tags/chunk/' style='font-size:1em'>chunk</a>
       </li><li>
         <a href='/tags/ci/cd/' style='font-size:1em'>ci/cd</a>
       </li><li>
-        <a href='/tags/cli/' style='font-size:1.6em'>cli</a>
+        <a href='/tags/cli/' style='font-size:1.8em'>cli</a>
       </li><li>
         <a href='/tags/configuration/' style='font-size:1em'>configuration</a>
       </li><li>
@@ -111,6 +113,10 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/jmeter/' style='font-size:1em'>jmeter</a>
       </li><li>
+        <a href='/tags/jq/' style='font-size:1em'>jq</a>
+      </li><li>
+        <a href='/tags/json/' style='font-size:1em'>json</a>
+      </li><li>
         <a href='/tags/kubernetes/' style='font-size:1em'>kubernetes</a>
       </li><li>
         <a href='/tags/linux/' style='font-size:1.2em'>linux</a>
@@ -137,6 +143,8 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/rest/' style='font-size:1em'>rest</a>
       </li><li>
+        <a href='/tags/scripting/' style='font-size:1em'>scripting</a>
+      </li><li>
         <a href='/tags/security/' style='font-size:1em'>security</a>
       </li><li>
         <a href='/tags/ssh/' style='font-size:1em'>ssh</a>
@@ -149,7 +157,7 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/testing/' style='font-size:1.2em'>testing</a>
       </li><li>
-        <a href='/tags/tools/' style='font-size:1.2em'>tools</a>
+        <a href='/tags/tools/' style='font-size:1.4em'>tools</a>
       </li><li>
         <a href='/tags/users/' style='font-size:1em'>users</a>
       </li><li>
@@ -256,23 +264,16 @@ gtag('config', 'UA-148436067-1');
   
 
   <div class='container entry-content'>
-  
-
-<p>Cheatsheet for <em>Linux Permission Management</em></p>
-
+  <p>Cheatsheet for <em>Linux Permission Management</em></p>
 <h3 id="standard-permissions">Standard Permissions</h3>
-
 <p>There are three basic permissions which are <code>r</code>ead, <code>w</code>rite and e<code>x</code>ecute. And they can be granted to</p>
-
 <ol>
 <li>a specific <strong>user</strong> (so if you are not that user those permissions do not apply to you)</li>
 <li>a <strong>group</strong> of users (if you&rsquo;re not a member of that group those permissions do not apply to you)</li>
 <li>to all <strong>other</strong> users (so if the first two do not apply - these are then the permissions you&rsquo;ll have on the respective file/directory)</li>
 </ol>
-
 <p>This is also the order in which linux checks the permissions.</p>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">-rwxrw-r-- <span style="color:#ae81ff">1</span> user1 shared       <span style="color:#ae81ff">0</span> Aug  <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">07</span>:16 user1File
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell">-rwxrw-r-- <span style="color:#ae81ff">1</span> user1 shared       <span style="color:#ae81ff">0</span> Aug  <span style="color:#ae81ff">6</span> 07:16 user1File
 <span style="color:#75715e">#└┬┘└┬┘└┬┘</span>
 <span style="color:#75715e"># │  │  │</span>
 <span style="color:#75715e"># │  │  └─&gt; others permissions: all other users can only Read</span> 
@@ -283,9 +284,7 @@ gtag('config', 'UA-148436067-1');
 <span style="color:#75715e"># │</span>
 <span style="color:#75715e"># └───────&gt; user-permissions: &#39;user1&#39; (the owner) can Read +</span> 
 <span style="color:#75715e">#                             Write + eXecute this file</span></code></pre></div>
-
 <p>Commands to manage permissions:</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># setting permissions in absolute mode where each digit</span> 
 <span style="color:#75715e"># represents an octal number (binary representation) so:</span> 
 <span style="color:#75715e"># 4 == 100 == r--</span>
@@ -311,26 +310,21 @@ groupadd shared <span style="color:#f92672">&amp;&amp;</span> useradd -G shared 
 <span style="color:#75715e"># user &#39;user1&#39; (notice the &#39;-a&#39; to append to its</span> 
 <span style="color:#75715e"># group list)</span>
 usermod -aG shared user1</code></pre></div>
-
 <h3 id="advanced-permissions">Advanced Permissions</h3>
-
 <p>Besides the standard permissions <code>rwx</code> there are a couple of special permissions. I&rsquo;d like to pick just two of &lsquo;em since they are of special use.</p>
-
-<h4 id="set-group-id-on-directory">Set group-id (<em>on directory</em>)</h4>
-
+<h4 id="set-group-id-_on-directory_">Set group-id (<em>on directory</em>)</h4>
 <p><code>sgid</code> will inherit the directory group owner for files created in that directoy (instead of using the creators primary group).</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-shell" data-lang="shell"><span style="color:#75715e"># create a shared directory where members of &#39;shared&#39; should</span>
 <span style="color:#75715e"># place their common files in</span> 
 root:~# mkdir -p /data/shared <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>&gt; chmod <span style="color:#ae81ff">770</span> /data/shared <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>&gt; chgrp shared /data/shared <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>&gt; ls -ld /data/shared
-drwxrwx--- <span style="color:#ae81ff">2</span> root shared <span style="color:#ae81ff">4096</span> Aug  <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">07</span>:10 /data/shared
+drwxrwx--- <span style="color:#ae81ff">2</span> root shared <span style="color:#ae81ff">4096</span> Aug  <span style="color:#ae81ff">6</span> 07:10 /data/shared
 
 <span style="color:#75715e"># introduce a user which is a member of &#39;shared&#39; group</span>
 root:~# useradd -G shared user1 <span style="color:#f92672">&amp;&amp;</span> id user1
-uid<span style="color:#f92672">=</span><span style="color:#ae81ff">1000</span><span style="color:#f92672">(</span>user1<span style="color:#f92672">)</span> gid<span style="color:#f92672">=</span><span style="color:#ae81ff">1001</span><span style="color:#f92672">(</span>user1<span style="color:#f92672">)</span> groups<span style="color:#f92672">=</span><span style="color:#ae81ff">1001</span><span style="color:#f92672">(</span>user1<span style="color:#f92672">)</span>,1000<span style="color:#f92672">(</span>shared<span style="color:#f92672">)</span>
+uid<span style="color:#f92672">=</span>1000<span style="color:#f92672">(</span>user1<span style="color:#f92672">)</span> gid<span style="color:#f92672">=</span>1001<span style="color:#f92672">(</span>user1<span style="color:#f92672">)</span> groups<span style="color:#f92672">=</span>1001<span style="color:#f92672">(</span>user1<span style="color:#f92672">)</span>,1000<span style="color:#f92672">(</span>shared<span style="color:#f92672">)</span>
 
 <span style="color:#75715e"># right now, &#39;shared&#39;-members can create files but those files</span>
 <span style="color:#75715e"># belong to the primary group of the owner</span>
@@ -338,7 +332,7 @@ root:~# su - user1
 user1:~$ touch /data/shared/user1File <span style="color:#f92672">&amp;&amp;</span> exit
 root:~# ls -l /data/shared
 total <span style="color:#ae81ff">0</span>
--rw-rw-r-- <span style="color:#ae81ff">1</span> user1 user1 <span style="color:#ae81ff">0</span> Aug  <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">07</span>:16 user1File
+-rw-rw-r-- <span style="color:#ae81ff">1</span> user1 user1 <span style="color:#ae81ff">0</span> Aug  <span style="color:#ae81ff">6</span> 07:16 user1File
 <span style="color:#75715e">#            └─┬─┘ └─┬─┘</span>
 <span style="color:#75715e">#              │     └─&gt; primary group of the user</span>
 <span style="color:#75715e">#              │         who created that file</span>
@@ -348,7 +342,7 @@ total <span style="color:#ae81ff">0</span>
 <span style="color:#75715e"># in the groups execution-right</span>
 root:~# chmod g+s /data/shared
 root:~# ls -ld /data/shared/
-drwxrws--- <span style="color:#ae81ff">2</span> root shared <span style="color:#ae81ff">4096</span> Aug  <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">07</span>:16 /data/shared/
+drwxrws--- <span style="color:#ae81ff">2</span> root shared <span style="color:#ae81ff">4096</span> Aug  <span style="color:#ae81ff">6</span> 07:16 /data/shared/
 <span style="color:#75715e">#     │</span>
 <span style="color:#75715e">#     └─&gt; set-group id: inherits its group</span>
 
@@ -358,30 +352,27 @@ root:~# su - user1
 user1:~$ touch /data/shared/user2File <span style="color:#f92672">&amp;&amp;</span> exit
 root:~# ls -l /data/shared
 total <span style="color:#ae81ff">0</span>
--rw-rw-r-- <span style="color:#ae81ff">1</span> user1 user1  <span style="color:#ae81ff">0</span> Aug  <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">07</span>:16 user1File
--rw-rw-r-- <span style="color:#ae81ff">1</span> user1 shared <span style="color:#ae81ff">0</span> Aug  <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">07</span>:22 user2File
+-rw-rw-r-- <span style="color:#ae81ff">1</span> user1 user1  <span style="color:#ae81ff">0</span> Aug  <span style="color:#ae81ff">6</span> 07:16 user1File
+-rw-rw-r-- <span style="color:#ae81ff">1</span> user1 shared <span style="color:#ae81ff">0</span> Aug  <span style="color:#ae81ff">6</span> 07:22 user2File
 <span style="color:#75715e">#                  └─┬──┘</span>
 <span style="color:#75715e">#                    └─&gt; now this file belongs to group &#39;shared&#39;</span> 
 <span style="color:#75715e">#                        and thus can be changed by any member</span> 
 <span style="color:#75715e">#                        of that group</span></code></pre></div>
-
-<h4 id="set-sticky-bit-on-directory">Set sticky-bit (<em>on directory</em>)</h4>
-
+<h4 id="set-sticky-bit-_on-directory_">Set sticky-bit (<em>on directory</em>)</h4>
 <p><code>sticky</code> will allow deletion of files only for the owner of the file</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># let&#39;s assume we&#39;ve extended the example from above to look</span>
 <span style="color:#75715e"># like this - write-access to both files for group-members</span>
 <span style="color:#75715e"># In that situation user2 can also _delete_ &#39;user1File&#39; (not</span>
 <span style="color:#75715e"># just write to it)</span>
 root:~# ls -l /data/shared
 total <span style="color:#ae81ff">0</span>
--rwxrwx--- <span style="color:#ae81ff">1</span> user2 shared <span style="color:#ae81ff">0</span> Aug  <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">07</span>:23 user2File
--rwxrwx--- <span style="color:#ae81ff">1</span> user1 shared <span style="color:#ae81ff">0</span> Aug  <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">07</span>:22 user1File
+-rwxrwx--- <span style="color:#ae81ff">1</span> user2 shared <span style="color:#ae81ff">0</span> Aug  <span style="color:#ae81ff">6</span> 07:23 user2File
+-rwxrwx--- <span style="color:#ae81ff">1</span> user1 shared <span style="color:#ae81ff">0</span> Aug  <span style="color:#ae81ff">6</span> 07:22 user1File
 
 <span style="color:#75715e"># to prevent that, set the sticky-bit on the directory</span>
 root:~# chmod +t /data/shared
 root:~# ls -ld /data/shared
-drwxrws--T <span style="color:#ae81ff">2</span> root shared <span style="color:#ae81ff">4096</span> Aug  <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">07</span>:22 /data/shared/
+drwxrws--T <span style="color:#ae81ff">2</span> root shared <span style="color:#ae81ff">4096</span> Aug  <span style="color:#ae81ff">6</span> 07:22 /data/shared/
 <span style="color:#75715e">#        │</span>
 <span style="color:#75715e">#        └─&gt; directory as sticky bit set</span>
 
@@ -389,9 +380,7 @@ drwxrws--T <span style="color:#ae81ff">2</span> root shared <span style="color:#
 root:~# su - user2
 user2:~$ rm /data/shared/user1File
 rm: cannot remove <span style="color:#e6db74">&#39;user1File&#39;</span>: Operation not permitted</code></pre></div>
-
 <h4 id="set-user-id">Set user-id</h4>
-
 <p>You can also set group-id on files or even set user-id on files and directories. For now I found not much use in may daily business for those commands and they can be even dangerous (especially <code>suid</code>) - hence, I skip &lsquo;em here.</p>
 
 </div>

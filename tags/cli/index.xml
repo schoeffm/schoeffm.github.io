@@ -6,10 +6,22 @@
     <description>Recent content in cli on Personal PasteBin</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 19 Sep 2019 16:27:21 +0200</lastBuildDate>
+    <lastBuildDate>Wed, 29 Jan 2020 15:07:59 +0100</lastBuildDate>
     
 	<atom:link href="https://schoeffm.github.io/tags/cli/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>jq by example</title>
+      <link>https://schoeffm.github.io/posts/jq-by-example/</link>
+      <pubDate>Wed, 29 Jan 2020 15:07:59 +0100</pubDate>
+      
+      <guid>https://schoeffm.github.io/posts/jq-by-example/</guid>
+      <description>Inspired by a nice tutorial on Baeldung I&amp;rsquo;ve decided to write done some usual suspects when working with jq. Hence, this is more like a cheatsheet than a regular post.
+For practitioners and interactive learners I also recommend the great jq-play online editor where you can try jq directly in the browser.
+For our examples below let&amp;rsquo;s go with the followin&amp;rsquo; JSON-input (fetched from a micro-profile /health-endpoint).
+{ &amp;#34;outcome&amp;#34;: &amp;#34;UP&amp;#34;, &amp;#34;checks&amp;#34;: [ { &amp;#34;name&amp;#34;: &amp;#34;core-isAlive&amp;#34;, &amp;#34;state&amp;#34;: &amp;#34;UP&amp;#34;, &amp;#34;data&amp;#34;: { &amp;#34;buildtime&amp;#34;: &amp;#34;2020-01-29T12:46:05.</description>
+    </item>
     
     <item>
       <title>Network Debugging of Containerized Java Apps</title>
@@ -17,8 +29,8 @@
       <pubDate>Thu, 19 Sep 2019 16:27:21 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/posts/network-debugging-of-containerized-java-apps/</guid>
-      <description>&lt;p&gt;The other day, I had the need to look closer into the network communication of a (dockerized) JEE application. My usual &lt;a href=&#34;https://schoeffm.github.io/posts/tcpdump-common-commands/&#34; target=&#34;_blank&#34;&gt;tcpdump approach&lt;/a&gt; wasn&amp;rsquo;t applicable though because the traffic was TLS-encrypted.&lt;br/&gt;
-Finally, I ended up with a setup where the app used a &lt;a href=&#34;https://mitmproxy.org&#34; target=&#34;_blank&#34;&gt;man-in-the-middle proxy&lt;/a&gt; for all its communication - that proxy transparently re-encrypted the traffic which gave me the chance to inspect every single message exchanged.&lt;/p&gt;</description>
+      <description>&lt;p&gt;The other day, I had the need to look closer into the network communication of a (dockerized) JEE application. My usual &lt;a href=&#34;https://schoeffm.github.io/posts/tcpdump-common-commands/&#34;&gt;tcpdump approach&lt;/a&gt; wasn&amp;rsquo;t applicable though because the traffic was TLS-encrypted.&lt;!-- raw HTML omitted --&gt;
+Finally, I ended up with a setup where the app used a &lt;a href=&#34;https://mitmproxy.org&#34;&gt;man-in-the-middle proxy&lt;/a&gt; for all its communication - that proxy transparently re-encrypted the traffic which gave me the chance to inspect every single message exchanged.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -28,7 +40,6 @@ Finally, I ended up with a setup where the app used a &lt;a href=&#34;https://mi
       
       <guid>https://schoeffm.github.io/posts/tcpdump-common-commands/</guid>
       <description>&lt;p&gt;When debugging network related issues the CLI tool &lt;code&gt;tcpdump&lt;/code&gt; is a valuable assistant. I usually use a variation of this base command:&lt;/p&gt;
-
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;    sudo tcpdump -A -i lo0 -n -s0 -v port &lt;span style=&#34;color:#ae81ff&#34;&gt;8080&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
     </item>
     
@@ -38,7 +49,7 @@ Finally, I ended up with a setup where the app used a &lt;a href=&#34;https://mi
       <pubDate>Sat, 13 Jul 2019 14:58:39 +0200</pubDate>
       
       <guid>https://schoeffm.github.io/posts/easy-en-decoding-using-base64/</guid>
-      <description>&lt;p&gt;When dealing with &lt;a href=&#34;https://kubernetes.io/docs/concepts/configuration/secret/&#34; target=&#34;_blank&#34;&gt;Kubernetes secrets&lt;/a&gt; or when testing REST-services using i.e. &lt;code&gt;curl&lt;/code&gt; it&amp;rsquo;s nice to have a fast&amp;rsquo;n&amp;rsquo;easy way of de- and encoding characters using &lt;a href=&#34;https://de.wikipedia.org/wiki/Base64&#34; target=&#34;_blank&#34;&gt;base64&lt;/a&gt;.&lt;/p&gt;</description>
+      <description>&lt;p&gt;When dealing with &lt;a href=&#34;https://kubernetes.io/docs/concepts/configuration/secret/&#34;&gt;Kubernetes secrets&lt;/a&gt; or when testing REST-services using i.e. &lt;code&gt;curl&lt;/code&gt; it&amp;rsquo;s nice to have a fast&amp;rsquo;n&amp;rsquo;easy way of de- and encoding characters using &lt;a href=&#34;https://de.wikipedia.org/wiki/Base64&#34;&gt;base64&lt;/a&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
@@ -48,7 +59,6 @@ Finally, I ended up with a setup where the app used a &lt;a href=&#34;https://mi
       
       <guid>https://schoeffm.github.io/posts/ssh-config-format/</guid>
       <description>&lt;p&gt;Dealing with SSH-connections can become cumbersome quickly especially when configurations change frequently, too.&lt;/p&gt;
-
 &lt;p&gt;Luckily, you can pre-configure most of a connections settings in a user specific config-file located in your &lt;code&gt;~/.ssh&lt;/code&gt;-folder called &lt;code&gt;config&lt;/code&gt;.&lt;/p&gt;</description>
     </item>
     

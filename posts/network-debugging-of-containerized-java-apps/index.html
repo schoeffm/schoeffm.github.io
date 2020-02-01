@@ -13,7 +13,7 @@ Finally, I ended up with a setup where the app used a man-in-the-middle proxy fo
 <meta property='og:site_name' content='Personal PasteBin'>
 <meta property='og:type' content='article'><meta property='article:section' content='posts'><meta property='article:tag' content='mitmproxy'><meta property='article:tag' content='proxy'><meta property='article:tag' content='cli'><meta property='article:tag' content='devops'><meta property='article:tag' content='network'><meta property='article:tag' content='tools'><meta property='article:published_time' content='2019-09-19T16:27:21&#43;02:00'/><meta property='article:modified_time' content='2019-09-19T16:27:21&#43;02:00'/><meta name='twitter:card' content='summary'>
 
-<meta name="generator" content="Hugo 0.59.1" />
+<meta name="generator" content="Hugo 0.63.2" />
 
   <title>Network Debugging of Containerized Java Apps • Personal PasteBin</title>
   <link rel='canonical' href='https://schoeffm.github.io/posts/network-debugging-of-containerized-java-apps/'>
@@ -75,13 +75,15 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/base64/' style='font-size:1em'>base64</a>
       </li><li>
+        <a href='/tags/bash/' style='font-size:1em'>bash</a>
+      </li><li>
         <a href='/tags/cheatsheet/' style='font-size:1.2em'>cheatsheet</a>
       </li><li>
         <a href='/tags/chunk/' style='font-size:1em'>chunk</a>
       </li><li>
         <a href='/tags/ci/cd/' style='font-size:1em'>ci/cd</a>
       </li><li>
-        <a href='/tags/cli/' style='font-size:1.6em'>cli</a>
+        <a href='/tags/cli/' style='font-size:1.8em'>cli</a>
       </li><li>
         <a href='/tags/configuration/' style='font-size:1em'>configuration</a>
       </li><li>
@@ -109,6 +111,10 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/jmeter/' style='font-size:1em'>jmeter</a>
       </li><li>
+        <a href='/tags/jq/' style='font-size:1em'>jq</a>
+      </li><li>
+        <a href='/tags/json/' style='font-size:1em'>json</a>
+      </li><li>
         <a href='/tags/kubernetes/' style='font-size:1em'>kubernetes</a>
       </li><li>
         <a href='/tags/linux/' style='font-size:1.2em'>linux</a>
@@ -135,6 +141,8 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/rest/' style='font-size:1em'>rest</a>
       </li><li>
+        <a href='/tags/scripting/' style='font-size:1em'>scripting</a>
+      </li><li>
         <a href='/tags/security/' style='font-size:1em'>security</a>
       </li><li>
         <a href='/tags/ssh/' style='font-size:1em'>ssh</a>
@@ -147,7 +155,7 @@ gtag('config', 'UA-148436067-1');
       </li><li>
         <a href='/tags/testing/' style='font-size:1.2em'>testing</a>
       </li><li>
-        <a href='/tags/tools/' style='font-size:1.2em'>tools</a>
+        <a href='/tags/tools/' style='font-size:1.4em'>tools</a>
       </li><li>
         <a href='/tags/users/' style='font-size:1em'>users</a>
       </li><li>
@@ -254,42 +262,30 @@ gtag('config', 'UA-148436067-1');
   
 
   <div class='container entry-content'>
-  <p>The other day, I had the need to look closer into the network communication of a (dockerized) JEE application. My usual <a href="/posts/tcpdump-common-commands/" target="_blank">tcpdump approach</a> wasn&rsquo;t applicable though because the traffic was TLS-encrypted.<br/>
-Finally, I ended up with a setup where the app used a <a href="https://mitmproxy.org" target="_blank">man-in-the-middle proxy</a> for all its communication - that proxy transparently re-encrypted the traffic which gave me the chance to inspect every single message exchanged.</p>
-
+  <p>The other day, I had the need to look closer into the network communication of a (dockerized) JEE application. My usual <a href="/posts/tcpdump-common-commands/">tcpdump approach</a> wasn&rsquo;t applicable though because the traffic was TLS-encrypted.<!-- raw HTML omitted -->
+Finally, I ended up with a setup where the app used a <a href="https://mitmproxy.org">man-in-the-middle proxy</a> for all its communication - that proxy transparently re-encrypted the traffic which gave me the chance to inspect every single message exchanged.</p>
 <pre><code>┌──────────┐ TLS #1  ┌────────────┐ TLS #2  ┌────────────┐
 │  Payara  ├────────&gt;│ MITM Proxy ├────────&gt;│ WebService │
 └──────────┘         └────────────┘         └────────────┘
 runs in docker       runs on localhost      runs anywhere
-</code></pre>
-
-<p>To use this you&rsquo;ll have to prepare a few things though:</p>
-
+</code></pre><p>To use this you&rsquo;ll have to prepare a few things though:</p>
 <h3 id="1-install-mitm">1. install mitm</h3>
-
-<p>If not already done install <a href="https://mitmproxy.org" target="_blank">mitmproxy</a> - a free and open source proxy available for all major platforms. After installed locally on our dev-machine, when starting the proxy we instruct it to listen for connections on port <code>1080</code>:</p>
-
+<p>If not already done install <a href="https://mitmproxy.org">mitmproxy</a> - a free and open source proxy available for all major platforms. After installed locally on our dev-machine, when starting the proxy we instruct it to listen for connections on port <code>1080</code>:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mitmproxy --listen-port <span style="color:#ae81ff">1080</span></code></pre></div>
-
 <h3 id="2-trust-proxy-certificates">2. trust proxy certificates</h3>
-
-<p>As you can see in the setup depicted above from a JEE app perspective the trusted communication partner is not the web-service anymore but mitmproxy (<em>which terminates the apps TLS connection now</em>). In order to allow that, without the JEE app complaining, you&rsquo;ll have to convince the JVM to trust the certificate used by <a href="https://mitmproxy.org" target="_blank">mitmproxy</a>.<br/>
-Luckily, during installation <a href="https://docs.mitmproxy.org/stable/concepts-certificates/#ca-and-cert-files" target="_blank">mitm</a> will generate and place its certificates in a hidden folder in your home directory <code>$HOME/.mitmproxy</code>.</p>
-
-<p>To trust it you&rsquo;ll have to import this certificate into the JVMs cert-store. Since we use a <a href="https://hub.docker.com/r/payara/server-full" target="_blank">dockerized payara</a> we just create a custom <code>Dockerfile</code> and add that step to it:</p>
-
+<p>As you can see in the setup depicted above from a JEE app perspective the trusted communication partner is not the web-service anymore but mitmproxy (<em>which terminates the apps TLS connection now</em>). In order to allow that, without the JEE app complaining, you&rsquo;ll have to convince the JVM to trust the certificate used by <a href="https://mitmproxy.org">mitmproxy</a>.<!-- raw HTML omitted -->
+Luckily, during installation <a href="https://docs.mitmproxy.org/stable/concepts-certificates/#ca-and-cert-files">mitm</a> will generate and place its certificates in a hidden folder in your home directory <code>$HOME/.mitmproxy</code>.</p>
+<p>To trust it you&rsquo;ll have to import this certificate into the JVMs cert-store. Since we use a <a href="https://hub.docker.com/r/payara/server-full">dockerized payara</a> we just create a custom <code>Dockerfile</code> and add that step to it:</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> payara/server-full:5.192</span><span style="color:#960050;background-color:#1e0010">
-</span><span style="color:#960050;background-color:#1e0010">
+</span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#75715e"># Import the SSL certificates of mitm</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> root</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">COPY</span> $HOME/.mitmproxy/mitmproxy-ca-cert.cer .<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> keytool -importcert -file ./mitmproxy-ca-cert.cer -keystore $PAYARA_DIR/glassfish/domains/production/config/cacerts.jks -alias MITM -storepass changeit -noprompt<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">USER</span><span style="color:#e6db74"> payara</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>...</code></pre></div>
-
 <h3 id="3-make-use-of-the-proxy">3. make use of the proxy</h3>
-
-<p>Right now, the containerized app isn&rsquo;t aware of a proxy running on <code>localhost:1080</code>. To make use of it you&rsquo;ll have to set a few system-properties for the application to pick up - and for payara you&rsquo;ll have to use the <code>asadmin</code>-tool for that job.<br/>Let&rsquo;s add that again to our <code>Dockerfile</code>
+<p>Right now, the containerized app isn&rsquo;t aware of a proxy running on <code>localhost:1080</code>. To make use of it you&rsquo;ll have to set a few system-properties for the application to pick up - and for payara you&rsquo;ll have to use the <code>asadmin</code>-tool for that job.<!-- raw HTML omitted -->Let&rsquo;s add that again to our <code>Dockerfile</code>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-Dockerfile" data-lang="Dockerfile"><span style="color:#66d9ef">FROM</span><span style="color:#e6db74"> payara/server-full:5.192</span><span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span>...<span style="color:#960050;background-color:#1e0010">
 </span><span style="color:#960050;background-color:#1e0010"></span><span style="color:#66d9ef">RUN</span> $ASADMIN start-domain <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
@@ -298,18 +294,13 @@ Luckily, during installation <a href="https://docs.mitmproxy.org/stable/concepts
 </span><span style="color:#ae81ff"></span>    $ASADMIN create-system-properties https.proxyHost<span style="color:#f92672">=</span>host.docker.internal <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    $ASADMIN create-system-properties https.proxyPort<span style="color:#f92672">=</span><span style="color:#ae81ff">1080</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#ae81ff">\
 </span><span style="color:#ae81ff"></span>    $ASADMIN stop-domain</code></pre></div>
-Notice the value for the <code>proxyHost</code>: <code>host.docker.internal</code>. <br/>
-As of Docker(-for-mac|-for-windows) 18.03 this will allow connections from within a running container to the host machine. You can find further details in this <a href="https://stackoverflow.com/questions/24319662/from-inside-of-a-docker-container-how-do-i-connect-to-the-localhost-of-the-mach/24326540#24326540" target="_blank">stackoverflow post</a>.</p>
-
+Notice the value for the <code>proxyHost</code>: <code>host.docker.internal</code>. <!-- raw HTML omitted -->
+As of Docker(-for-mac|-for-windows) 18.03 this will allow connections from within a running container to the host machine. You can find further details in this <a href="https://stackoverflow.com/questions/24319662/from-inside-of-a-docker-container-how-do-i-connect-to-the-localhost-of-the-mach/24326540#24326540">stackoverflow post</a>.</p>
 <h3 id="4-start-debugging">4. start debugging</h3>
-
-<p>And that&rsquo;s it &hellip; when starting our payara container and interacting with the web-service we should see respective entries in the proxies UI.<br/>
+<p>And that&rsquo;s it &hellip; when starting our payara container and interacting with the web-service we should see respective entries in the proxies UI.<!-- raw HTML omitted -->
 For later analysis you can even stream the requests to a file while looking at &lsquo;em:</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mitmproxy --listen-port <span style="color:#ae81ff">1080</span> -w mitm.log</code></pre></div>
-
 <p>Which can then be loaded later on for further analysis</p>
-
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mitmproxy -r mitm.log</code></pre></div>
 </div>
 
