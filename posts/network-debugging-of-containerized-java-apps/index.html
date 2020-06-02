@@ -330,6 +330,25 @@ For later analysis you can even stream the requests to a file while looking at &
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mitmproxy --listen-port <span style="color:#ae81ff">1080</span> -w mitm.log</code></pre></div>
 <p>Which can then be loaded later on for further analysis</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mitmproxy -r mitm.log</code></pre></div>
+<hr>
+<h3 id="update-02062020---replace-response">Update 02.06.2020 - Replace Response</h3>
+<p>I had to extend that setup the other day by replacing the response for a certain resource with a static, pre-defined reply. <code>mitmproxy</code> allows to execute python-scripts while handling flows - using those scripts one is able to manipulate the respective flow.</p>
+<p>The followin&rsquo; script for example is looking for a request containing the string <code>getFilteredBookings</code> in its URL and once found it&rsquo;ll responde to that request with a static reply defined in <code>trimmed_output.json</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">from mitmproxy import http
+
+def request<span style="color:#f92672">(</span>flow: http.HTTPFlow<span style="color:#f92672">)</span> -&gt; None:
+
+    <span style="color:#66d9ef">if</span> <span style="color:#e6db74">&#34;getFilteredBookings&#34;</span> in flow.request.pretty_url:
+        with open<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;trimmed_output.json&#39;</span>, <span style="color:#e6db74">&#39;r&#39;</span><span style="color:#f92672">)</span> as file:
+            data <span style="color:#f92672">=</span> file.read<span style="color:#f92672">()</span>.replace<span style="color:#f92672">(</span><span style="color:#e6db74">&#39;\n&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">)</span>
+            flow.response <span style="color:#f92672">=</span> http.HTTPResponse.make<span style="color:#f92672">(</span>
+                200,  <span style="color:#75715e"># status-code</span>
+                data, <span style="color:#75715e"># body</span>
+                <span style="color:#f92672">{</span><span style="color:#e6db74">&#34;Content-Type&#34;</span>: <span style="color:#e6db74">&#34;application/json&#34;</span>, <span style="color:#e6db74">&#34;X-schoeffm&#34;</span>:<span style="color:#e6db74">&#34;intercepted&#34;</span><span style="color:#f92672">}</span>  <span style="color:#75715e"># headers</span>
+            <span style="color:#f92672">)</span></code></pre></div>
+<p>Using the <code>--script</code>-option (applicable several times) you can then pass your <code>replyWithTrimmedBookings.py</code>-script to <code>mitmproxy</code>.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash">mitmproxy --listen-port <span style="color:#ae81ff">1080</span> --script replyWithTrimmedBookings.py </code></pre></div>
+<p>This approach allowed me to prototype an API change without even touching a single line of code. Further examples (of different complexity) for useful scripts can be found in the <a href="https://docs.mitmproxy.org/stable/addons-examples/">mitmproxy documentations</a>.</p>
 </div>
 
   
