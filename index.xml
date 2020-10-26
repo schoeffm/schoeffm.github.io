@@ -5,11 +5,16 @@
     <link>https://schoeffm.github.io/</link>
     <description>Recent content on Personal PasteBin</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Thu, 07 May 2020 20:41:26 +0200</lastBuildDate>
-    
-	<atom:link href="https://schoeffm.github.io/index.xml" rel="self" type="application/rss+xml" />
-    
+    <lastBuildDate>Sun, 25 Oct 2020 07:52:55 +0200</lastBuildDate><atom:link href="https://schoeffm.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Leverage Huffduffer from mobile safari (again)</title>
+      <link>https://schoeffm.github.io/posts/push-audio-files-from-mobile-safari-to-huffduffer-again/</link>
+      <pubDate>Sun, 25 Oct 2020 07:52:55 +0200</pubDate>
+      
+      <guid>https://schoeffm.github.io/posts/push-audio-files-from-mobile-safari-to-huffduffer-again/</guid>
+      <description>&lt;p&gt;Swiping through my timeline it sometimes happens that I stumble upon a podcast episode that sounds especially interesting. The issue is, I don&amp;rsquo;t necessarily wanna subscribe to the full thing but only &amp;rsquo;d like to listen to that specific episode.&lt;/p&gt;
+&lt;p&gt;While this issue is a solved problem in general (&lt;em&gt;thanks to an awesome service called &lt;a href=&#34;https://huffduffer.com&#34;&gt;Huffduffer&lt;/a&gt;&lt;/em&gt;) it lately became an issue again on my mobile phone (&lt;em&gt;where I tend to consume my timeline&lt;/em&gt;) since my beloved &lt;a href=&#34;https://jancbeck.com/articles/huffduff-safari&#34;&gt;huffduffer-workflow&lt;/a&gt; stopped working and the all-new &lt;a href=&#34;https://support.apple.com/de-de/guide/shortcuts/welcome/ios&#34;&gt;shortcuts&lt;/a&gt;-app &amp;hellip; well, it felt clunky already &lt;a href=&#34;https://discussions.apple.com/thread/251084795&#34;&gt;and over time got even worse&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
     
     <item>
       <title>JSON-Log Parsing With stern and jq</title>
@@ -116,7 +121,7 @@ In other words, let the test results act as a quality gate for either promoting 
       
       <guid>https://schoeffm.github.io/posts/linux-user-management/</guid>
       <description>Cheatsheet for Linux User Management
-Handling users # adds a new user called &amp;#39;schoeffm&amp;#39; useradd -m -s /bin/zsh -G docker schoeffm # └┬┘└────┬─────┘└─┬─────┘ # │ │ │ # │ │ └─&amp;gt; List of groups the user # │ │ should be a member of # │ └─&amp;gt; login shell of the new account # └────────&amp;gt; also create a home directory for this # account # Assigns a new UID to &amp;lt;─────┐ # this account │ # ┌──┴──┐ usermod -aG docker -s /bin/zsh -L|U -u 4711 schoeffm # └───┬────┘ └───┬─────┘ └─┬─┘ # │ │ └─&amp;gt; Lock or Unlock user # │ └─&amp;gt; set new login shell for account # └────────────&amp;gt; append to the list of groups # without &amp;#39;a&amp;#39; this will replace # the group list userdel not explicitly shown here since it&amp;rsquo;s comprehensible.</description>
+Handling users # adds a new user called &amp;#39;schoeffm&amp;#39; useradd -m -s /bin/zsh -G docker schoeffm # └┬┘└────┬─────┘└─┬─────┘ # │ │ │ # │ │ └─&amp;gt; List of groups the user  # │ │ should be a member of  # │ └─&amp;gt; login shell of the new account # └────────&amp;gt; also create a home directory for this  # account # Assigns a new UID to &amp;lt;─────┐ # this account │ # ┌──┴──┐  usermod -aG docker -s /bin/zsh -L|U -u 4711 schoeffm # └───┬────┘ └───┬─────┘ └─┬─┘ # │ │ └─&amp;gt; Lock or Unlock user # │ └─&amp;gt; set new login shell for account # └────────────&amp;gt; append to the list of groups  # without &amp;#39;a&amp;#39; this will replace # the group list userdel not explicitly shown here since it&amp;rsquo;s comprehensible.</description>
     </item>
     
     <item>
@@ -194,6 +199,15 @@ Finally, we found, at least for our project, a good solution which does the job 
       
       <guid>https://schoeffm.github.io/posts/api-versioning-with-vendor-specific-media-types/</guid>
       <description>&lt;p&gt;Content Negotiation in JAX-RS allows you to leverage the information in the client requests &lt;code&gt;Accept&lt;/code&gt; header to map that request to a specific handler-method within your application. In combination with vendor-specific media types this approach can be used for &lt;a href=&#34;http://blog.steveklabnik.com/posts/2011-07-03-nobody-understands-rest-or-http&#34;&gt;versioning of an API&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Archive</title>
+      <link>https://schoeffm.github.io/archives/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://schoeffm.github.io/archives/</guid>
+      <description>archives</description>
     </item>
     
   </channel>

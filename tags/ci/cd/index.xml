@@ -4,12 +4,7 @@
     <title>ci/cd on Personal PasteBin</title>
     <link>https://schoeffm.github.io/tags/ci/cd/</link>
     <description>Recent content in ci/cd on Personal PasteBin</description>
-    <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    
-	<atom:link href="https://schoeffm.github.io/tags/ci/cd/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <generator>Hugo -- gohugo.io</generator><atom:link href="https://schoeffm.github.io/tags/ci/cd/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Using load-tests as quality gate in Jenkins pipelines</title>
       <link>https://schoeffm.github.io/posts/integration-of-loadtests-within-jenkins-pipelines/</link>

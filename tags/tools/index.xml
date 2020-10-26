@@ -5,12 +5,7 @@
     <link>https://schoeffm.github.io/tags/tools/</link>
     <description>Recent content in tools on Personal PasteBin</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language>
-    <lastBuildDate>Wed, 29 Jan 2020 15:07:59 +0100</lastBuildDate>
-    
-	<atom:link href="https://schoeffm.github.io/tags/tools/index.xml" rel="self" type="application/rss+xml" />
-    
-    
+    <lastBuildDate>Wed, 29 Jan 2020 15:07:59 +0100</lastBuildDate><atom:link href="https://schoeffm.github.io/tags/tools/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>jq by example</title>
       <link>https://schoeffm.github.io/posts/jq-by-example/</link>
